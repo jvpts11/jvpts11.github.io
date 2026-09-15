@@ -1,0 +1,103 @@
+---
+// Explorer-style listing of the projects. Phase 2 replaces these tiles with
+// the content collection under src/content/projects.
+const TILES = [
+  {
+    id: 'polaron',
+    icon: 'i-polaron',
+    name: 'Polaron',
+    short: 'Systems language',
+    desc: 'Systems language and its ecosystem.',
+  },
+  {
+    id: 'agents',
+    icon: 'i-agents',
+    name: 'agents.exe',
+    short: 'LLM-driven civilization sim',
+    desc: 'LLM-driven civilization sim, rewritten in Polaron.',
+  },
+  {
+    id: 'js-tech-series',
+    icon: 'i-jts',
+    name: 'js-tech-series',
+    short: 'NeoForge Minecraft mod',
+    desc: 'Computers, networks and SQL-like logistics for Minecraft 1.21.1.',
+  },
+];
+---
+
+<div class="explorer">
+  <div class="menubar" aria-hidden="true">
+    <span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span>
+  </div>
+
+  <div class="toolbar">
+    <button class="tb" type="button" disabled>Back</button>
+    <button class="tb" type="button" disabled>Forward</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button class="tb" type="button" data-launch="computer">
+      <svg aria-hidden="true"><use href="#i-computer"></use></svg>Up
+    </button>
+    <button class="tb" type="button" disabled>Folders</button>
+  </div>
+
+  <div class="address">
+    <span>Address</span>
+    <div class="addr-field">
+      <svg aria-hidden="true"><use href="#i-folder"></use></svg>C:\jvpts11\Projects
+    </div>
+    <button class="btn" type="button" disabled>Go</button>
+  </div>
+
+  <div class="ex-main">
+    <aside class="taskpane">
+      <section class="tp-box">
+        <h3>Project Tasks</h3>
+        <ul>
+          <li><a href="https://github.com/jvpts11" target="_blank" rel="noopener">View jvpts11 on GitHub</a></li>
+        </ul>
+      </section>
+      <section class="tp-box">
+        <h3>Other Places</h3>
+        <ul>
+          <li><button class="linkbtn" type="button" data-launch="computer">My Computer</button></li>
+          <li><button class="linkbtn" type="button" data-launch="recycle-bin">Recycle Bin</button></li>
+          <li><button class="linkbtn" type="button" data-launch="contact">Contact</button></li>
+        </ul>
+      </section>
+      <section class="tp-box">
+        <h3>Details</h3>
+        <div class="details" data-details>
+          <strong>Projects</strong>
+          <span>3 items. Select one to see details.</span>
+        </div>
+      </section>
+    </aside>
+
+    <div class="ex-view">
+      <ul class="tiles" aria-label="Projects">
+        {
+          TILES.map((tile) => (
+            <li>
+              <button
+                class="tile"
+                type="button"
+                data-program={tile.id}
+                data-name={tile.name}
+                data-desc={tile.desc}
+              >
+                <svg aria-hidden="true">
+                  <use href={`#${tile.icon}`} />
+                </svg>
+                <span>
+                  <strong>{tile.name}</strong>
+                  <span>{tile.short}</span>
+                </span>
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>

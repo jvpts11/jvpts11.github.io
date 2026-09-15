@@ -1,0 +1,16 @@
+---
+// A fake shell. Purely client side, no network. Behavior lands in
+// src/scripts/programs/cmd.ts; this is the markup it drives.
+const BANNER = `jvpts11 OS [Version 0.1]
+(C) jvpts11. Type HELP for a list of commands.
+
+`;
+---
+
+<div class="cmd">
+  <pre class="cmd-out">{BANNER}</pre>
+  <form class="cmd-line">
+    <label for="cmd-input">C:\Users\jvpts11&gt;</label>
+    <input id="cmd-input" autocomplete="off" autocapitalize="off" spellcheck="false" />
+  </form>
+</div>

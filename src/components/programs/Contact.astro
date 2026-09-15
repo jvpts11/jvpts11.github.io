@@ -1,0 +1,36 @@
+---
+// Links only: there is no form backend and nothing is ever sent from here.
+// The address is published deliberately, at the owner's request.
+const EMAIL = 'jvptsyt11@gmail.com';
+const GITHUB = 'https://github.com/jvpts11';
+---
+
+<div class="oe">
+  <div class="toolbar">
+    <button class="tb" type="button" disabled>Send</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button class="tb" type="button" disabled>Attach</button>
+  </div>
+
+  <div class="oe-fields">
+    <label for="oe-to">To:</label>
+    <input id="oe-to" readonly value="jvpts11" />
+    <label for="oe-subject">Subject:</label>
+    <input id="oe-subject" readonly value="Hello from your portfolio" />
+  </div>
+
+  <div class="oe-body">
+    <p>You can reach jvpts11 here:</p>
+    <ul class="oe-links">
+      <li>
+        <svg aria-hidden="true"><use href="#i-github"></use></svg>
+        GitHub: <a href={GITHUB} target="_blank" rel="noopener">github.com/jvpts11</a>
+      </li>
+      <li>
+        <svg aria-hidden="true"><use href="#i-mail"></use></svg>
+        Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </li>
+    </ul>
+    <p class="muted">This window only shows links. Nothing is sent from here.</p>
+  </div>
+</div>

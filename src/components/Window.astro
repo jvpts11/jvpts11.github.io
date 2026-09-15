@@ -1,0 +1,50 @@
+---
+import type { Program } from '../data/programs';
+
+interface Props {
+  program: Program;
+}
+
+const { program } = Astro.props;
+
+// Two programs paint their own body instead of the default beige one.
+const SKINS: Partial<Record<Program['id'], string>> = {
+  cmd: 'cmdwin',
+  media: 'wmpwin',
+};
+const skin = SKINS[program.id];
+---
+
+<section
+  id={`win-${program.id}`}
+  class:list={['win', skin]}
+  role="dialog"
+  aria-labelledby={`wt-${program.id}`}
+  data-program={program.id}
+  hidden
+>
+  <header class="titlebar">
+    <svg class="ticon" aria-hidden="true"><use href={`#${program.icon}`}></use></svg>
+    <h2 class="ttext" id={`wt-${program.id}`}>{program.title}</h2>
+    <div class="controls">
+      <button class="ctl min" type="button" aria-label="Minimize">
+        <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="5" y="13" width="7" height="3" fill="#fff"></rect></svg>
+      </button>
+      <button class="ctl max" type="button" aria-label="Maximize">
+        <svg viewBox="0 0 21 21" aria-hidden="true">
+          <rect x="5" y="5" width="11" height="11" fill="none" stroke="#fff"></rect>
+          <rect x="5" y="5" width="11" height="3" fill="#fff"></rect>
+        </svg>
+      </button>
+      <button class="ctl close" type="button" aria-label="Close">
+        <svg viewBox="0 0 21 21" aria-hidden="true">
+          <path d="M6.5 6.5l8 8M14.5 6.5l-8 8" stroke="#fff" stroke-width="2.2"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="wbody"><slot /></div>
+
+  {program.status && <div class="statusbar"><span>{program.status}</span></div>}
+</section>
