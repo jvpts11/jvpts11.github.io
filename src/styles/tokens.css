@@ -90,6 +90,11 @@
   --start: linear-gradient(180deg, #5db65d 0%, #3a963a 10%, #2e842e 50%, #2a7a2a 88%, #1f5e1f 100%);
   --start-shadow: inset 0 1px 0 rgb(255 255 255 / 35%), inset -2px 0 3px rgb(0 0 0 / 25%), 2px 0 3px rgb(0 0 0 / 25%);
   --start-pressed-shadow: inset 1px 2px 4px rgb(0 0 0 / 45%);
+  --start-text-shadow: 1px 1px 2px rgb(0 0 0 / 55%);
+  --start-glyph-shadow: 1px 1px 1px rgb(0 0 0 / 40%);
+  --task-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
+  --task-active-shadow: inset 1px 1px 2px rgb(0 0 0 / 45%);
+  --tray-shadow: inset 1px 0 1px rgb(255 255 255 / 30%);
   --tray: linear-gradient(180deg, #2b93f0 0%, #0c72d2 10%, #0a6fcb 88%, #095cab 100%);
   --tray-border: #083e9e;
 
@@ -103,6 +108,8 @@
   --sm-sep: #c5c5c5;
   --sm-hover-hint: #e6eefb;
   --sm-shadow: 3px 0 12px rgb(0 0 0 / 45%);
+  --sm-avatar-shadow: 1px 1px 3px rgb(0 0 0 / 40%);
+  --sm-foot-hover: rgb(255 255 255 / 18%);
 
   /* Explorer chrome */
   --pane: linear-gradient(180deg, #7ba2e7 0%, #6375d6 100%);

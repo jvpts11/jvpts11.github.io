@@ -184,14 +184,14 @@ a {
   box-shadow: var(--start-shadow);
   color: var(--white);
   font: italic bold 19px / 1 var(--font-title);
-  text-shadow: 1px 1px 2px rgb(0 0 0 / 55%);
+  text-shadow: var(--start-text-shadow);
   cursor: default;
 }
 
 .start svg {
   width: 20px;
   height: 20px;
-  filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 40%));
+  filter: drop-shadow(var(--start-glyph-shadow));
 }
 
 .start:hover {
@@ -227,7 +227,7 @@ a {
   border: 1px solid var(--task-border);
   border-radius: var(--radius-md);
   background: var(--task-btn);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
+  box-shadow: var(--task-shadow);
   color: var(--white);
   font-size: var(--font-size-small);
   cursor: default;
@@ -247,7 +247,7 @@ a {
 
 .task.active {
   background: var(--task-btn-active);
-  box-shadow: inset 1px 1px 2px rgb(0 0 0 / 45%);
+  box-shadow: var(--task-active-shadow);
 }
 
 .task:focus-visible {
@@ -263,7 +263,7 @@ a {
   padding: 0 10px 0 12px;
   border-left: 1px solid var(--tray-border);
   background: var(--tray);
-  box-shadow: inset 1px 0 1px rgb(255 255 255 / 30%);
+  box-shadow: var(--tray-shadow);
   color: var(--white);
   font-size: var(--font-size-small);
 }
@@ -311,7 +311,7 @@ a {
   border: 2px solid var(--white);
   border-radius: var(--radius-lg);
   background: var(--white);
-  box-shadow: 1px 1px 3px rgb(0 0 0 / 40%);
+  box-shadow: var(--sm-avatar-shadow);
 }
 
 .sm-cols {
@@ -421,7 +421,7 @@ a {
 .sm-foot button:hover,
 .sm-foot button:focus-visible {
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 18%);
+  background: var(--sm-foot-hover);
   outline: none;
 }
 
