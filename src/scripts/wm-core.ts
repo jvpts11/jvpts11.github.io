@@ -40,7 +40,12 @@ export interface WindowState extends Point, Size {
   maximized: boolean;
 }
 
-export const CASCADE_ORIGIN: Point = { x: 110, y: 24 };
+/**
+ * Where the first window lands. Far enough right to clear two columns of
+ * desktop icons (8px inset plus two 84px cells and the 6px gap), so a window
+ * opened on arrival never sits on top of an icon.
+ */
+export const CASCADE_ORIGIN: Point = { x: 200, y: 24 };
 export const CASCADE_STEP = 26;
 export const CASCADE_SLOTS = 8;
 
@@ -121,20 +126,36 @@ export function serialize(states: WindowState[]): string {
   return JSON.stringify({ v: SCHEMA_VERSION, windows: states });
 }
 
-/** Reads stored state defensively: anything unusable yields an empty desktop instead of throwing. */
-export function deserialize(raw: string | null): WindowState[] {
-  if (!raw) return [];
+/** Parses a stored payload, returning its window list only when this version wrote it. */
+function parsePayload(raw: string | null): unknown[] | null {
+  if (!raw) return null;
 
   let payload: unknown;
   try {
     payload = JSON.parse(raw);
   } catch {
-    return [];
+    return null;
   }
-  if (typeof payload !== 'object' || payload === null || Array.isArray(payload)) return [];
+  if (typeof payload !== 'object' || payload === null || Array.isArray(payload)) return null;
 
   const { v, windows } = payload as { v?: unknown; windows?: unknown };
-  if (v !== SCHEMA_VERSION || !Array.isArray(windows)) return [];
+  if (v !== SCHEMA_VERSION || !Array.isArray(windows)) return null;
+  return windows;
+}
+
+/**
+ * True when storage holds a payload this version wrote, even an empty one.
+ * An empty payload means the visitor closed every window, which is a real
+ * choice and must be honoured; anything unusable counts as a first visit.
+ */
+export function isSavedPayload(raw: string | null): boolean {
+  return parsePayload(raw) !== null;
+}
+
+/** Reads stored state defensively: anything unusable yields an empty desktop instead of throwing. */
+export function deserialize(raw: string | null): WindowState[] {
+  const windows = parsePayload(raw);
+  if (!windows) return [];
 
   const seen = new Set<ProgramId>();
   const result: WindowState[] = [];

@@ -10,9 +10,14 @@ import { getProgram, type Program } from '../data/programs';
 import {
   cascadePosition,
   clampPosition,
+  deserialize,
   isProgramId,
+  isSavedPayload,
   nextZ,
+  parseOpenParam,
   raise,
+  serialize,
+  STORAGE_KEY,
   type Bounds,
   type ProgramId,
   type WindowState,
@@ -37,6 +42,19 @@ const RESTORE_GLYPH =
 
 const open = new Map<ProgramId, OpenWindow>();
 let opened = 0;
+
+/**
+ * Writes the desktop to storage after every discrete change. Never throws:
+ * in private mode or with storage blocked the desktop still works, it just
+ * forgets between visits.
+ */
+function save(): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, serialize(states()));
+  } catch {
+    // Storage is unavailable. Nothing to do; the session stays in memory.
+  }
+}
 
 function bounds(): Bounds {
   return { width: layer?.clientWidth ?? 0, height: layer?.clientHeight ?? 0 };
@@ -144,6 +162,7 @@ function focusWindow(id: ProgramId): void {
     target.task.setAttribute('aria-pressed', String(isActive));
     apply(target);
   }
+  save();
 }
 
 function focusTopmost(): void {
@@ -163,6 +182,7 @@ function minimize(id: ProgramId): void {
   entry.task.classList.remove('active');
   entry.task.setAttribute('aria-pressed', 'false');
   apply(entry);
+  save();
   focusTopmost();
 }
 
@@ -182,6 +202,7 @@ function close(id: ProgramId): void {
   entry.el.classList.remove('active', 'max');
   entry.task.remove();
   open.delete(id);
+  save();
   entry.opener?.focus();
   focusTopmost();
 }
@@ -191,10 +212,9 @@ export function closeAll(): void {
   for (const id of [...open.keys()]) close(id);
 }
 
-function toggleMax(id: ProgramId): void {
+function setMaximized(id: ProgramId, maximized: boolean): void {
   const entry = open.get(id);
   if (!entry) return;
-  const maximized = !entry.state.maximized;
   entry.state = { ...entry.state, maximized };
   entry.el.classList.toggle('max', maximized);
 
@@ -203,6 +223,12 @@ function toggleMax(id: ProgramId): void {
     button.innerHTML = maximized ? RESTORE_GLYPH : MAX_GLYPH;
     button.setAttribute('aria-label', maximized ? 'Restore' : 'Maximize');
   }
+  save();
+}
+
+function toggleMax(id: ProgramId): void {
+  const entry = open.get(id);
+  if (entry) setMaximized(id, !entry.state.maximized);
 }
 
 function startDrag(entry: OpenWindow, event: PointerEvent): void {
@@ -222,6 +248,7 @@ function startDrag(entry: OpenWindow, event: PointerEvent): void {
     apply(entry);
   };
   const stop = () => {
+    save();
     bar.removeEventListener('pointermove', move);
     bar.removeEventListener('pointerup', stop);
     bar.removeEventListener('pointercancel', stop);
@@ -379,3 +406,59 @@ for (const el of document.querySelectorAll<HTMLElement>('section.win[data-progra
   const id = programFrom(el);
   if (id) wire(el, id);
 }
+
+/** Puts a window back where the visitor left it, re-clamped to this viewport. */
+function hydrate(state: WindowState): void {
+  const el = windowEl(state.id);
+  if (!layer || !taskbar || !el || open.has(state.id)) return;
+
+  const program = getProgram(state.id);
+  const area = bounds();
+  const size = {
+    w: Math.min(state.w, Math.max(240, area.width - 12)),
+    h: Math.min(state.h, Math.max(200, area.height - 12)),
+  };
+  const position = clampPosition({ x: state.x, y: state.y }, size, area);
+
+  const task = makeTaskButton(program);
+  taskbar.append(task);
+
+  const entry: OpenWindow = {
+    state: { ...state, ...size, ...position, maximized: false },
+    el,
+    task,
+    program,
+    opener: null,
+  };
+  open.set(state.id, entry);
+  opened += 1;
+  apply(entry);
+  if (state.maximized) setMaximized(state.id, true);
+}
+
+function boot(): void {
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    // Storage blocked: treat this as a first visit.
+  }
+
+  // Oldest first, so the saved z-order survives the rebuild.
+  for (const state of [...deserialize(raw)].sort((a, b) => a.z - b.z)) hydrate(state);
+  focusTopmost();
+
+  const deepLink = parseOpenParam(location.search);
+  if (deepLink) {
+    // The URL wins over whatever was saved, and the address is left alone.
+    openProgram(deepLink);
+  } else if (!isSavedPayload(raw)) {
+    // First visit, or a payload we cannot trust: never show an empty desktop.
+    openProgram('computer');
+  }
+}
+
+// A reload or a closing tab must not lose the last change.
+window.addEventListener('pagehide', save);
+
+boot();

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   deserialize,
   isProgramId,
+  isSavedPayload,
   parseOpenParam,
   serialize,
   STORAGE_KEY,
@@ -75,6 +76,23 @@ describe('parseOpenParam', () => {
     expect(parseOpenParam('?open=')).toBeNull();
     expect(parseOpenParam('?open=solitaire')).toBeNull();
     expect(parseOpenParam('?other=polaron')).toBeNull();
+  });
+});
+
+describe('isSavedPayload', () => {
+  it('recognises a payload this version wrote, even an empty one', () => {
+    expect(isSavedPayload(serialize([state]))).toBe(true);
+    // An empty desktop is a real choice: the visitor closed every window.
+    expect(isSavedPayload(serialize([]))).toBe(true);
+  });
+
+  it('rejects anything it cannot trust, which counts as a first visit', () => {
+    expect(isSavedPayload(null)).toBe(false);
+    expect(isSavedPayload('')).toBe(false);
+    expect(isSavedPayload('{not json')).toBe(false);
+    expect(isSavedPayload(JSON.stringify({ v: 99, windows: [] }))).toBe(false);
+    expect(isSavedPayload(JSON.stringify({ v: 1, windows: 'nope' }))).toBe(false);
+    expect(isSavedPayload(JSON.stringify(['just', 'an', 'array']))).toBe(false);
   });
 });
 

@@ -30,9 +30,9 @@ describe('clampPosition', () => {
 });
 
 describe('cascadePosition', () => {
-  it('steps each window down and to the right', () => {
-    expect(cascadePosition(0, SIZE, BOUNDS)).toEqual({ x: 110, y: 24 });
-    expect(cascadePosition(1, SIZE, BOUNDS)).toEqual({ x: 136, y: 50 });
+  it('steps each window down and to the right, clearing the icon columns', () => {
+    expect(cascadePosition(0, SIZE, BOUNDS)).toEqual({ x: 200, y: 24 });
+    expect(cascadePosition(1, SIZE, BOUNDS)).toEqual({ x: 226, y: 50 });
   });
 
   it('wraps back to the first slot after eight windows', () => {

@@ -34,7 +34,9 @@ test('closes the start menu when clicking the desktop', async ({ page }) => {
   await page.locator('#startbtn').click();
   await expect(page.locator('#startmenu')).toBeVisible();
 
-  await page.locator('.wallpaper').click({ position: { x: 600, y: 300 } });
+  // Bare wallpaper: right of the window opened on arrival, left of the
+  // balloon, clear of the icon columns and above the taskbar.
+  await page.locator('.wallpaper').click({ position: { x: 800, y: 600 } });
   await expect(page.locator('#startmenu')).toBeHidden();
 });
 
