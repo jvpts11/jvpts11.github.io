@@ -35,6 +35,9 @@ interface OpenWindow {
 const layer = document.getElementById('windows');
 const taskbar = document.getElementById('tasks');
 
+/** Below this width the desktop behaves like a phone: fullscreen, one at a time. */
+const phone = window.matchMedia('(max-width: 767px)');
+
 const MAX_GLYPH =
   '<svg viewBox="0 0 21 21" aria-hidden="true"><rect x="5" y="5" width="11" height="11" fill="none" stroke="#fff"></rect><rect x="5" y="5" width="11" height="3" fill="#fff"></rect></svg>';
 const RESTORE_GLYPH =
@@ -105,7 +108,11 @@ function makeTaskButton(program: Program): HTMLButtonElement {
   return task;
 }
 
-export function openProgram(id: ProgramId, opener: HTMLElement | null = null): boolean {
+export function openProgram(
+  id: ProgramId,
+  opener: HTMLElement | null = null,
+  focusEl = true,
+): boolean {
   const el = windowEl(id);
   if (!layer || !taskbar || !el) return false;
 
@@ -143,13 +150,26 @@ export function openProgram(id: ProgramId, opener: HTMLElement | null = null): b
   open.set(id, entry);
   apply(entry);
   focusWindow(id);
-  el.focus();
+  if (focusEl) el.focus();
   return true;
 }
 
 function focusWindow(id: ProgramId): void {
   const entry = open.get(id);
   if (!entry) return;
+
+  // One window at a time on a phone: whatever was open steps aside into the
+  // taskbar instead of stacking behind.
+  if (phone.matches) {
+    for (const other of open.values()) {
+      if (other.state.id === id || other.state.minimized) continue;
+      other.state = { ...other.state, minimized: true };
+      other.el.classList.remove('active');
+      other.task.classList.remove('active');
+      other.task.setAttribute('aria-pressed', 'false');
+      apply(other);
+    }
+  }
 
   const raised = raise(states(), id);
   for (const state of raised) {
@@ -232,7 +252,7 @@ function toggleMax(id: ProgramId): void {
 }
 
 function startDrag(entry: OpenWindow, event: PointerEvent): void {
-  if (event.button !== 0 || entry.state.maximized) return;
+  if (event.button !== 0 || entry.state.maximized || phone.matches) return;
   const bar = event.currentTarget as HTMLElement;
   const offsetX = event.clientX - entry.el.offsetLeft;
   const offsetY = event.clientY - entry.el.offsetTop;
@@ -336,7 +356,10 @@ document.addEventListener('click', (event) => {
   const icon = target.closest<HTMLElement>('a.icon[data-program]');
   if (icon) {
     event.preventDefault();
-    selectIcon(icon);
+    // A phone has no double-click: one tap opens.
+    const id = phone.matches ? programFrom(icon) : null;
+    if (id) openProgram(id, icon);
+    else selectIcon(icon);
     return;
   }
 
@@ -448,13 +471,17 @@ function boot(): void {
   for (const state of [...deserialize(raw)].sort((a, b) => a.z - b.z)) hydrate(state);
   focusTopmost();
 
+  // Neither path steals keyboard focus: on arrival the first Tab should reach
+  // the desktop icons, not the inside of a window nobody asked to open.
   const deepLink = parseOpenParam(location.search);
   if (deepLink) {
     // The URL wins over whatever was saved, and the address is left alone.
-    openProgram(deepLink);
-  } else if (!isSavedPayload(raw)) {
+    openProgram(deepLink, null, false);
+  } else if (!isSavedPayload(raw) && !phone.matches) {
     // First visit, or a payload we cannot trust: never show an empty desktop.
-    openProgram('computer');
+    // Not on a phone, though: a window there covers the whole screen and would
+    // hide the icons the visitor arrived to see.
+    openProgram('computer', null, false);
   }
 }
 

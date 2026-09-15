@@ -18,6 +18,45 @@ interface Props {
 
 const { title, description } = Astro.props;
 const icons = PROGRAMS.filter((program) => program.desktop);
+
+/*
+ * Without scripting the desktop becomes a plain, stacked document: the icons
+ * turn into a list of links to the program sections, and every window is
+ * ordinary content. Injected as a string so the Astro compiler does not hoist
+ * this stylesheet into the head, where it would apply to everyone.
+ */
+const NO_JS = `<style>
+  html, body { height: auto; overflow: auto; }
+  body { background: var(--beige); }
+  #os { position: static; overflow: visible; }
+  .wallpaper, .taskbar, #startmenu, #balloon, #shutdown,
+  .win .controls, .win .statusbar, .taskpane, .tabs { display: none !important; }
+  .no-js-note {
+    margin: 0; padding: 12px 16px;
+    border-bottom: 1px solid var(--todo-line);
+    background: var(--todo-bg); color: var(--todo-ink);
+    font: var(--font-size-content)/1.5 var(--font-ui);
+  }
+  .icons {
+    position: static; inset: auto;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 12px 16px;
+  }
+  .icon .label { color: var(--ink); text-shadow: none; }
+  #windows { position: static; inset: auto; padding: 0 16px 32px; }
+  .win {
+    position: static !important; display: block !important;
+    width: auto !important; height: auto !important;
+    max-width: 900px; margin: 0 0 20px; box-shadow: none;
+  }
+  .wbody { overflow: visible; }
+  .tabpanel { display: flex !important; }
+  .about, .explorer, .oe, .dlg, .wmp, .cmd { height: auto; }
+</style>
+<p class="no-js-note">
+  JavaScript is off, so this is the plain version of jvpts11 OS: every program
+  below is a section of this page, and the icons link straight to them.
+</p>`;
 ---
 
 <!doctype html>
@@ -30,6 +69,8 @@ const icons = PROGRAMS.filter((program) => program.desktop);
     <link rel="canonical" href={Astro.site} />
   </head>
   <body>
+    <noscript set:html={NO_JS}></noscript>
+
     <div id="os">
       <IconSprite />
       <Wallpaper />
