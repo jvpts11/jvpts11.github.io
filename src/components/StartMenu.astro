@@ -1,0 +1,63 @@
+---
+import { PROGRAMS } from '../data/programs';
+
+const programs = PROGRAMS.filter((program) => program.menu === 'programs');
+const places = PROGRAMS.filter((program) => program.menu === 'places');
+---
+
+<div class="startmenu" id="startmenu" hidden>
+  <div class="sm-head">
+    <svg aria-hidden="true"><use href="#i-avatar"></use></svg>
+    <span>jvpts11</span>
+  </div>
+
+  <div class="sm-cols">
+    <ul class="sm-col sm-left" aria-label="Programs">
+      {
+        programs.map((program) => (
+          <li>
+            <button class="sm-item" type="button" data-launch={program.id}>
+              <svg aria-hidden="true">
+                <use href={`#${program.icon}`} />
+              </svg>
+              <span>
+                <b>{program.label}</b>
+                {program.hint && <small>{program.hint}</small>}
+              </span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="sm-col sm-right" aria-label="Places">
+      {
+        places.map((program) => (
+          <li>
+            <button class="sm-item" type="button" data-launch={program.id}>
+              <svg aria-hidden="true">
+                <use href={`#${program.icon}`} />
+              </svg>
+              {program.label}
+            </button>
+          </li>
+        ))
+      }
+      <li class="sm-sep" aria-hidden="true"></li>
+      <li>
+        <a class="sm-item" href="https://github.com/jvpts11" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-github"></use></svg>GitHub
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sm-foot">
+    <button id="logoff" type="button">
+      <svg aria-hidden="true"><use href="#i-logoff"></use></svg>Log Off
+    </button>
+    <button id="turnoff" type="button">
+      <svg aria-hidden="true"><use href="#i-power"></use></svg>Turn Off
+    </button>
+  </div>
+</div>

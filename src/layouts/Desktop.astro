@@ -1,6 +1,9 @@
 ---
+import Balloon from '../components/Balloon.astro';
 import DesktopIcon from '../components/DesktopIcon.astro';
 import IconSprite from '../components/IconSprite.astro';
+import Shutdown from '../components/Shutdown.astro';
+import StartMenu from '../components/StartMenu.astro';
 import Taskbar from '../components/Taskbar.astro';
 import Wallpaper from '../components/Wallpaper.astro';
 import { PROGRAMS } from '../data/programs';
@@ -37,11 +40,17 @@ const icons = PROGRAMS.filter((program) => program.desktop);
 
       <div id="windows"><slot /></div>
 
+      <Balloon />
+      <StartMenu />
       <Taskbar />
     </div>
 
+    <Shutdown />
+
     <script>
       import '../scripts/wm';
+      import '../scripts/start-menu';
+      import '../scripts/clock';
     </script>
   </body>
 </html>

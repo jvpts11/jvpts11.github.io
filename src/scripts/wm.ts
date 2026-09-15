@@ -186,6 +186,11 @@ function close(id: ProgramId): void {
   focusTopmost();
 }
 
+/** Closes every open window. Used by Log Off in the start menu. */
+export function closeAll(): void {
+  for (const id of [...open.keys()]) close(id);
+}
+
 function toggleMax(id: ProgramId): void {
   const entry = open.get(id);
   if (!entry) return;
