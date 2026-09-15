@@ -1,0 +1,160 @@
+/*
+ * Every color, gradient, font, size and radius in the site lives here.
+ * Nothing outside this file may hardcode a visual value.
+ *
+ * The look recreates the feel of an early-2000s desktop from scratch. No
+ * vendor artwork, fonts or assets are used: these are original values.
+ */
+:root {
+  /* Typography */
+  --font-ui: Tahoma, Verdana, 'Segoe UI', sans-serif;
+  --font-title: 'Trebuchet MS', Tahoma, sans-serif;
+  --font-mono: 'Lucida Console', Consolas, 'Courier New', monospace;
+  --font-size-ui: 12px;
+  --font-size-small: 11px;
+  --font-size-tiny: 10px;
+  --font-size-content: 13px;
+  --font-size-title: 13px;
+
+  /* Metrics */
+  --tb-h: 30px;
+  --win-radius: 8px;
+  --win-frame-width: 3px;
+  --titlebar-h: 29px;
+  --ctl-size: 21px;
+  --icon-size: 48px;
+  --icon-cell-w: 84px;
+  --icon-cell-h: 88px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --motion-fast: 120ms;
+
+  /* Core surfaces and text */
+  --white: #fff;
+  --ink: #000;
+  --ink-muted: #4b4b4b;
+  --beige: #ece9d8;
+  --beige-dark: #d6d2c2;
+  --select: #316ac5;
+  --select-ink: #fff;
+  --select-soft: #e1eaf8;
+  --select-soft-border: #9ebbe8;
+  --link: #0033cc;
+  --focus-orange: #f8b636;
+  --focus-orange-soft: #fff0cf;
+  --disabled-ink: #aca899;
+  --disabled-border: #c9c7ba;
+
+  /* Window frame and title bar */
+  --frame: #0a4ecf;
+  --frame-inactive: #6f87c8;
+  --title-active: linear-gradient(
+    180deg,
+    #3a8cff 0%,
+    #1f6ff0 6%,
+    #0a5ae0 30%,
+    #0b57d9 70%,
+    #0a48c0 92%,
+    #0a246a 100%
+  );
+  --title-inactive: linear-gradient(180deg, #9cb2e3 0%, #6e88cc 8%, #5670b8 40%, #4f6ab5 88%, #43599a 100%);
+  --title-shadow: #0a1f6e;
+  --win-shadow: 0 6px 18px rgb(0 0 0 / 35%);
+
+  /* Window controls */
+  --ctl-blue: linear-gradient(180deg, #5c9bff 0%, #2d6fea 45%, #1f59d6 100%);
+  --ctl-red: linear-gradient(135deg, #f3a37f 0%, #e2562e 45%, #c4371a 100%);
+  --ctl-border: #fff;
+  --ctl-shadow: inset -1px -1px 1px rgb(0 0 0 / 25%);
+
+  /* Buttons, inputs, groups and tabs */
+  --btn-border: #003c74;
+  --btn-face: linear-gradient(180deg, #fff 0%, #ecebe6 86%, #d6d0c5 100%);
+  --btn-face-active: linear-gradient(180deg, #e3e3db, #f2f1ee);
+  --field-border: #7f9db9;
+  --group-border: #d0d0bf;
+  --legend-ink: #0046d5;
+  --tab-border: #919b9c;
+  --tab-face: linear-gradient(180deg, #fff, #ecebe5);
+  --tab-face-active: #fcfcfe;
+  --tab-accent: #f0a030;
+  --status-shadow-dark: #a7a395;
+
+  /* Taskbar */
+  --taskbar: linear-gradient(180deg, #3c86f0 0%, #2a68dd 8%, #245edc 20%, #245edc 88%, #1941a5 100%);
+  --taskbar-border: #0b3ca8;
+  --task-btn: linear-gradient(180deg, #4a8cf2 0%, #3070dd 12%, #2c69d6 88%, #255cc6 100%);
+  --task-btn-active: linear-gradient(180deg, #1a45a8 0%, #1e4fb6 15%, #1e4fb6 100%);
+  --task-border: #1c49ae;
+  --start: linear-gradient(180deg, #5db65d 0%, #3a963a 10%, #2e842e 50%, #2a7a2a 88%, #1f5e1f 100%);
+  --start-shadow: inset 0 1px 0 rgb(255 255 255 / 35%), inset -2px 0 3px rgb(0 0 0 / 25%), 2px 0 3px rgb(0 0 0 / 25%);
+  --start-pressed-shadow: inset 1px 2px 4px rgb(0 0 0 / 45%);
+  --tray: linear-gradient(180deg, #2b93f0 0%, #0c72d2 10%, #0a6fcb 88%, #095cab 100%);
+  --tray-border: #083e9e;
+
+  /* Start menu */
+  --sm-head: linear-gradient(180deg, #2b7be0 0%, #0e5fcb 14%, #0c5acb 60%, #1b67d2 90%, #2f7adb 100%);
+  --sm-right: #d3e5fa;
+  --sm-right-line: #95bdee;
+  --sm-accent: #f0a030;
+  --sm-foot: linear-gradient(180deg, #3a81e6 0%, #1f5fd0 100%);
+  --sm-places-ink: #0a246a;
+  --sm-sep: #c5c5c5;
+  --sm-hover-hint: #e6eefb;
+  --sm-shadow: 3px 0 12px rgb(0 0 0 / 45%);
+
+  /* Explorer chrome */
+  --pane: linear-gradient(180deg, #7ba2e7 0%, #6375d6 100%);
+  --pane-head: linear-gradient(90deg, #fff 0%, #c6d3f7 100%);
+  --pane-ink: #0b3b9c;
+  --pane-box: #d6dff7;
+  --toolbar-hover-border: #cecec3;
+  --toolbar-hover-face: linear-gradient(#fff, #f1f0ea);
+
+  /* About-style program windows */
+  --about-title-ink: #0a246a;
+  --banner-polaron: linear-gradient(180deg, #0a246a 0%, #1d5cd6 60%, #6fa7f5 100%);
+  --banner-agents: linear-gradient(180deg, #0e3b2a 0%, #1f7a4a 60%, #7ccb7a 100%);
+  --banner-jts: linear-gradient(180deg, #2b1d10 0%, #5e3f25 55%, #8fd14f 100%);
+  --chip-border: #b9c4d6;
+
+  /* Placeholder box for facts the owner has not supplied yet */
+  --todo-bg: #fff4d6;
+  --todo-line: #d98a00;
+  --todo-ink: #6b4200;
+
+  /* Command prompt */
+  --cmd-bg: #0c0c0c;
+  --cmd-ink: #ccc;
+
+  /* Media player */
+  --wmp-bg: linear-gradient(180deg, #27406e 0%, #142544 100%);
+  --wmp-panel: #0b1830;
+  --wmp-border: #3a5a92;
+  --wmp-ink: #d9e6ff;
+  --wmp-muted: #9fb4d9;
+  --wmp-accent: #7fd1ff;
+  --wmp-bar: linear-gradient(180deg, #7fd1ff, #2a6bd6);
+  --wmp-track-active: #1e4e9c;
+  --wmp-track-active-hint: #d2e2ff;
+  --wmp-track-hover: rgb(127 209 255 / 12%);
+  --wmp-btn: radial-gradient(circle at 35% 30%, #9cd3ff, #2a6bd6 60%, #12306e);
+  --wmp-btn-border: #9cc4ff;
+
+  /* Desktop wallpaper: an original CSS landscape, no photograph */
+  --sky: linear-gradient(180deg, #1c58c2 0%, #3a80de 34%, #83b7ee 60%, #cbe2f7 74%);
+  --sky-base: #1c58c2;
+  --cloud: rgb(255 255 255 / 82%);
+  --cloud-soft: rgb(255 255 255 / 55%);
+  --hill-back: linear-gradient(180deg, #78c446 0%, #4b9a2a 35%, #2f6f1a 100%);
+  --hill-front: linear-gradient(180deg, #63b534 0%, #3e8e22 40%, #26621a 100%);
+  --hill-shine: rgb(190 240 140 / 55%);
+  --icon-label-shadow: 1px 1px 1px #000, 0 0 2px #000;
+
+  /* Notification balloon and shutdown screen */
+  --balloon: #ffffe1;
+  --balloon-border: #000;
+  --balloon-shadow: 2px 3px 6px rgb(0 0 0 / 35%);
+  --shutdown: linear-gradient(180deg, #0a246a, #1d5cd6);
+}

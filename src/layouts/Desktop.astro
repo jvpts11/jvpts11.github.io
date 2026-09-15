@@ -1,0 +1,43 @@
+---
+import DesktopIcon from '../components/DesktopIcon.astro';
+import IconSprite from '../components/IconSprite.astro';
+import Taskbar from '../components/Taskbar.astro';
+import Wallpaper from '../components/Wallpaper.astro';
+import { PROGRAMS } from '../data/programs';
+import '../styles/tokens.css';
+import '../styles/xp.css';
+import '../styles/desktop.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const icons = PROGRAMS.filter((program) => program.desktop);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.site} />
+  </head>
+  <body>
+    <div id="os">
+      <IconSprite />
+      <Wallpaper />
+
+      <ul class="icons" aria-label="Desktop">
+        {icons.map((program) => <DesktopIcon program={program} />)}
+      </ul>
+
+      <div id="windows"><slot /></div>
+
+      <Taskbar />
+    </div>
+  </body>
+</html>
