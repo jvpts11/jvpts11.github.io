@@ -133,6 +133,19 @@
   box-shadow: inset 1px 1px 0 var(--status-shadow-dark), inset -1px -1px 0 var(--white);
 }
 
+/* Maximized windows fill the desktop layer, overriding their inline geometry. */
+.win.max {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0;
+}
+
+.win.max .titlebar {
+  border-radius: 0;
+}
+
 /* ---------- buttons, fields, groups ---------- */
 .btn {
   display: inline-flex;
