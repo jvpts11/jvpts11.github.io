@@ -1,0 +1,5 @@
+# jvpts11 OS. Everything here is public and meant to be read.
+User-agent: *
+Allow: /
+
+Sitemap: https://jvpts11.github.io/sitemap-index.xml
