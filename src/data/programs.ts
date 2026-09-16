@@ -51,8 +51,9 @@ export const PROGRAMS: readonly Program[] = [
     title: 'Polaron.exe',
     label: 'Polaron.exe',
     icon: 'i-polaron',
-    width: 540,
-    height: 400,
+    // Tall enough for the hello.pol listing and the buttons under it.
+    width: 620,
+    height: 600,
     desktop: true,
     menu: 'programs',
     hint: 'Systems language',
@@ -62,8 +63,9 @@ export const PROGRAMS: readonly Program[] = [
     title: 'agents.exe',
     label: 'agents.exe',
     icon: 'i-agents',
+    // Room for the status list, the placeholder and the buttons.
     width: 520,
-    height: 360,
+    height: 460,
     desktop: true,
     menu: 'programs',
     hint: 'Civilization sim',
