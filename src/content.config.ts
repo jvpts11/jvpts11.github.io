@@ -12,7 +12,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     tagline: z.string(),
-    repo: z.string().url(),
+    repo: z.url(),
     /** Language GitHub reports for the repository. */
     language: z.string().optional(),
     /** Where it runs, when that matters, e.g. "Minecraft 1.21.1, NeoForge". */

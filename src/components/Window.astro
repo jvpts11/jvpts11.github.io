@@ -3,9 +3,12 @@ import type { Program } from '../data/programs';
 
 interface Props {
   program: Program;
+  /** Overrides the registry text, for a status the page computes at build time. */
+  status?: string;
 }
 
-const { program } = Astro.props;
+const { program, status } = Astro.props;
+const statusText = status ?? program.status;
 
 // Two programs paint their own body instead of the default beige one.
 const SKINS: Partial<Record<Program['id'], string>> = {
@@ -46,5 +49,5 @@ const skin = SKINS[program.id];
 
   <div class="wbody"><slot /></div>
 
-  {program.status && <div class="statusbar"><span>{program.status}</span></div>}
+  {statusText && <div class="statusbar"><span>{statusText}</span></div>}
 </section>

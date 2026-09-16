@@ -1,29 +1,19 @@
 ---
-// Explorer-style listing of the projects. Phase 2 replaces these tiles with
-// the content collection under src/content/projects.
-const TILES = [
-  {
-    id: 'polaron',
-    icon: 'i-polaron',
-    name: 'Polaron',
-    short: 'Systems language',
-    desc: 'Systems language and its ecosystem.',
-  },
-  {
-    id: 'agents',
-    icon: 'i-agents',
-    name: 'agents.exe',
-    short: 'LLM-driven civilization sim',
-    desc: 'LLM-driven civilization sim, rewritten in Polaron.',
-  },
-  {
-    id: 'js-tech-series',
-    icon: 'i-jts',
-    name: 'js-tech-series',
-    short: 'NeoForge Minecraft mod',
-    desc: 'Computers, networks and SQL-like logistics for Minecraft 1.21.1.',
-  },
-];
+import { getCollection } from 'astro:content';
+import { getProgram } from '../../data/programs';
+import { isProgramId } from '../../scripts/wm-core';
+
+// The tiles come from src/content/projects, the same files behind the static
+// pages, so the window and the pages can never disagree.
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+const tiles = projects.map((project) => ({
+  id: project.id,
+  title: project.data.title,
+  tagline: project.data.tagline,
+  page: `/projects/${project.id}/`,
+  icon: isProgramId(project.id) ? getProgram(project.id).icon : 'i-folder',
+}));
 ---
 
 <div class="explorer">
@@ -54,6 +44,7 @@ const TILES = [
       <section class="tp-box">
         <h3>Project Tasks</h3>
         <ul>
+          <li><a href="/projects/">Browse the project pages</a></li>
           <li><a href="https://github.com/jvpts11" target="_blank" rel="noopener">View jvpts11 on GitHub</a></li>
         </ul>
       </section>
@@ -69,7 +60,7 @@ const TILES = [
         <h3>Details</h3>
         <div class="details" data-details>
           <strong>Projects</strong>
-          <span>3 items. Select one to see details.</span>
+          <span>{tiles.length} items. Select one to see details.</span>
         </div>
       </section>
     </aside>
@@ -77,21 +68,22 @@ const TILES = [
     <div class="ex-view">
       <ul class="tiles" aria-label="Projects">
         {
-          TILES.map((tile) => (
+          tiles.map((tile) => (
             <li>
               <button
                 class="tile"
                 type="button"
                 data-program={tile.id}
-                data-name={tile.name}
-                data-desc={tile.desc}
+                data-name={tile.title}
+                data-desc={tile.tagline}
+                data-page={tile.page}
               >
                 <svg aria-hidden="true">
                   <use href={`#${tile.icon}`} />
                 </svg>
                 <span>
-                  <strong>{tile.name}</strong>
-                  <span>{tile.short}</span>
+                  <strong>{tile.title}</strong>
+                  <span>{tile.tagline}</span>
                 </span>
               </button>
             </li>

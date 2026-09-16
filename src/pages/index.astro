@@ -9,8 +9,12 @@ import MyComputer from '../components/programs/MyComputer.astro';
 import MyProjects from '../components/programs/MyProjects.astro';
 import Polaron from '../components/programs/Polaron.astro';
 import RecycleBin from '../components/programs/RecycleBin.astro';
+import { getCollection } from 'astro:content';
 import { getProgram } from '../data/programs';
 import Desktop from '../layouts/Desktop.astro';
+
+// The explorer status bar counts what is actually in src/content/projects.
+const projectCount = (await getCollection('projects')).length;
 ---
 
 <Desktop
@@ -18,7 +22,7 @@ import Desktop from '../layouts/Desktop.astro';
   description="Portfolio of jvpts11, AI engineer: a desktop you can click through, with one program per project."
 >
   <Window program={getProgram('computer')}><MyComputer /></Window>
-  <Window program={getProgram('projects')}><MyProjects /></Window>
+  <Window program={getProgram('projects')} status={`${projectCount} objects`}><MyProjects /></Window>
   <Window program={getProgram('polaron')}><Polaron /></Window>
   <Window program={getProgram('agents')}><Agents /></Window>
   <Window program={getProgram('js-tech-series')}><JsTechSeries /></Window>

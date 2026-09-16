@@ -41,7 +41,7 @@ export const PROGRAMS: readonly Program[] = [
     icon: 'i-folder',
     width: 660,
     height: 430,
-    status: '3 objects',
+    // The status bar counts the content collection, so the page passes it in.
     desktop: true,
     menu: 'programs',
     hint: 'Everything jvpts11 builds',

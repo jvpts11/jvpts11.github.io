@@ -330,6 +330,14 @@ function selectTile(tile: HTMLElement): void {
   status.textContent = 'Status: TODO(jvpts11)';
 
   details.append(name, description, status);
+
+  // Every project also has a page that stands on its own.
+  if (tile.dataset.page) {
+    const link = document.createElement('a');
+    link.href = tile.dataset.page;
+    link.textContent = 'Open the project page';
+    details.append(link);
+  }
 }
 
 function selectIcon(icon: HTMLElement): void {
