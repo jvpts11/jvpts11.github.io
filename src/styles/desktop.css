@@ -56,30 +56,36 @@ a {
     var(--sky);
 }
 
-.wallpaper::before,
-.wallpaper::after {
+.hill {
   position: absolute;
-  content: '';
+  height: 100%;
 }
 
-.wallpaper::before {
+.hill-back {
   top: 60%;
   right: 15%;
   left: -25%;
-  height: 100%;
   border-radius: 50% 50% 0 0 / 28% 28% 0 0;
   background: var(--hill-back);
 }
 
-.wallpaper::after {
+.hill-front {
   top: 68%;
   right: -35%;
   left: 20%;
-  height: 100%;
   border-radius: 50% 50% 0 0 / 32% 32% 0 0;
   background:
     radial-gradient(ellipse 45% 18% at 38% 4%, var(--hill-shine), transparent 70%),
+    radial-gradient(ellipse 60% 10% at 8% 2%, var(--hill-fold), transparent 70%),
     var(--hill-front);
+}
+
+/* Haze along the horizon and a vignette, painted over the hills. */
+.wallpaper::after {
+  position: absolute;
+  inset: 0;
+  background: var(--haze), var(--vignette);
+  content: '';
 }
 
 /* ---------- desktop icons ---------- */
@@ -114,6 +120,7 @@ a {
   flex: none;
   width: var(--icon-size);
   height: var(--icon-size);
+  filter: var(--icon-shadow);
 }
 
 .icon .label {

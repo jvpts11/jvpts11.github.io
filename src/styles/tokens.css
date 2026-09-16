@@ -207,6 +207,17 @@
   --hill-back: linear-gradient(180deg, #78c446 0%, #4b9a2a 35%, #2f6f1a 100%);
   --hill-front: linear-gradient(180deg, #63b534 0%, #3e8e22 40%, #26621a 100%);
   --hill-shine: rgb(190 240 140 / 55%);
+  --hill-fold: rgb(20 60 12 / 35%);
+  /* Light haze where the ground meets the sky, and a soft vignette on top. */
+  --haze: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0%) 52%,
+    rgb(255 255 255 / 38%) 62%,
+    rgb(255 255 255 / 10%) 70%,
+    rgb(255 255 255 / 0%) 78%
+  );
+  --vignette: radial-gradient(125% 95% at 50% 38%, rgb(0 0 0 / 0%) 52%, rgb(0 0 0 / 22%) 100%);
+  --icon-shadow: drop-shadow(1px 2px 2px rgb(0 0 0 / 45%));
   --icon-label-shadow: 1px 1px 1px #000, 0 0 2px #000;
 
   /* Notification balloon and shutdown screen */

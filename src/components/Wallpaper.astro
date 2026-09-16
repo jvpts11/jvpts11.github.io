@@ -1,6 +1,11 @@
 ---
 // The wallpaper is drawn entirely in CSS: a blue sky with soft clouds over
-// two rolling green hills. No photograph and no vendor artwork.
+// two rolling green hills, hazed where they meet and vignetted at the edges.
+// The hills are real elements rather than pseudo-elements so the overlay can
+// paint above them. No photograph and no vendor artwork.
 ---
 
-<div class="wallpaper" aria-hidden="true"></div>
+<div class="wallpaper" aria-hidden="true">
+  <span class="hill hill-back"></span>
+  <span class="hill hill-front"></span>
+</div>
