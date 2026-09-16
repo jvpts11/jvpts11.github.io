@@ -1,8 +1,14 @@
 ---
 // The description is the owner's own repository description, reused verbatim.
+// The screenshot was supplied by the owner.
+import { Image } from 'astro:assets';
+import shot from '../../assets/js-tech-series.png';
+
 const REPO = 'https://github.com/jvpts11/js-tech-series';
 const DESCRIPTION =
-  'Computers that run the logistics of your Minecraft base: build the hardware, install a system, and let the network store, move and craft. Minecraft 1.21.1, NeoForge.';
+  'Computers that run the logistics of your Minecraft base: build the hardware, install a system, and let the network store, move and craft.';
+const ALT =
+  'A terminal tower and a wall-mounted rack from js-tech-series standing on a Minecraft beach, the rack holding boards, drives and modules behind glass';
 ---
 
 <div class="about jts">
@@ -13,15 +19,27 @@ const DESCRIPTION =
     <h3 class="about-title">js-tech-series</h3>
     <p class="lead">{DESCRIPTION}</p>
 
+    <figure class="shot">
+      <Image src={shot} alt={ALT} width={460} loading="lazy" />
+      <figcaption>A terminal and a rack on the shore: the hardware you build before the network runs.</figcaption>
+    </figure>
+
     <ul class="chips">
       <li><svg aria-hidden="true"><use href="#i-computer"></use></svg>Computers</li>
       <li><svg aria-hidden="true"><use href="#i-net"></use></svg>Networks</li>
       <li><svg aria-hidden="true"><use href="#i-folder"></use></svg>SQL-like logistics</li>
     </ul>
 
-    <p class="todo">TODO(jvpts11): screenshots of the mod in game.</p>
+    <fieldset class="group">
+      <legend>Runs on</legend>
+      <ul class="devlist">
+        <li>Minecraft 1.21.1, NeoForge</li>
+        <li>Written in Java</li>
+      </ul>
+    </fieldset>
 
     <div class="dlg-actions">
+      <a class="btn" href="/projects/js-tech-series/">Project page</a>
       <a class="btn" href={REPO} target="_blank" rel="noopener">Open on GitHub</a>
       <button class="btn" type="button" data-close>Close</button>
     </div>

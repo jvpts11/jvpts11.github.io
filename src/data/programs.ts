@@ -76,8 +76,9 @@ export const PROGRAMS: readonly Program[] = [
     title: 'js-tech-series',
     label: 'js-tech-series',
     icon: 'i-jts',
+    // Fits the screenshot and the buttons, and still fits its cascade slot.
     width: 520,
-    height: 360,
+    height: 560,
     desktop: true,
     menu: 'programs',
     hint: 'NeoForge mod',

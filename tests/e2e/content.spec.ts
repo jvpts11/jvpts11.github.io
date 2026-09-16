@@ -60,14 +60,15 @@ test('keeps the playlist intact and free of audio', async ({ page }) => {
   await expect(page.locator('audio')).toHaveCount(0);
 });
 
-test('marks the facts that are still missing', async ({ page }) => {
+test('leaves no placeholder behind, and marks any that returns', async ({ page }) => {
   await page.goto('/');
-  // Still waiting on the owner: screenshots of the mod in game.
-  await expect(page.locator('#win-js-tech-series .todo').first()).toContainText('TODO(jvpts11)');
-
-  // Everything else is settled and carries no placeholder at all.
-  const settled = ['computer', 'projects', 'polaron', 'agents', 'cmd', 'media', 'contact', 'recycle-bin'];
-  for (const id of settled) {
-    await expect(page.locator(`#win-${id} .todo`)).toHaveCount(0);
+  // Every fact on the desktop is sourced now, so no window carries a
+  // placeholder. If one ever comes back it has to use the agreed marker,
+  // which is what the loop checks before the count.
+  const boxes = page.locator('section.win .todo');
+  const count = await boxes.count();
+  for (let i = 0; i < count; i += 1) {
+    await expect(boxes.nth(i)).toContainText('TODO(jvpts11)');
   }
+  expect(count).toBe(0);
 });

@@ -14,4 +14,6 @@ install a system on it, and the network takes over storing, moving and crafting.
 
 ## Screenshots
 
-<p class="todo">TODO(jvpts11): screenshots of the mod in game.</p>
+![A terminal tower and a wall-mounted rack from js-tech-series standing on a Minecraft beach, the rack holding boards, drives and modules behind glass](../../assets/js-tech-series.png)
+
+*A terminal and a rack on the shore: the hardware you build before the network runs.*
