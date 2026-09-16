@@ -1,0 +1,46 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Document from '../../layouts/Document.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, tagline, repo, language, platform, status } = project.data;
+---
+
+<Document title={`${title} — jvpts11`} description={tagline}>
+  <nav class="page-nav">
+    <a href="/">jvpts11 OS</a>
+    <span aria-hidden="true">/</span>
+    <a href="/projects/">Projects</a>
+  </nav>
+
+  <h1>{title}</h1>
+  <p class="tagline">{tagline}</p>
+
+  <dl class="facts">
+    <dt>Repository</dt>
+    <dd><a href={repo}>{repo.replace('https://github.com/', '')}</a></dd>
+    {language && <dt>Language</dt>}
+    {language && <dd>{language}</dd>}
+    {platform && <dt>Runs on</dt>}
+    {platform && <dd>{platform}</dd>}
+    {status && <dt>Status</dt>}
+    {status && <dd>{status}</dd>}
+  </dl>
+
+  <Content />
+
+  <p><a href={`/?open=${project.id}`}>Open {title} on the desktop</a></p>
+</Document>

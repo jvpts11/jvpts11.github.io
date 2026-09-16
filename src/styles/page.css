@@ -1,0 +1,91 @@
+/*
+ * The static project pages. They are plain documents, readable on their own
+ * and without the desktop, so they keep the palette but drop the chrome.
+ */
+body {
+  margin: 0;
+  background: var(--beige);
+  color: var(--ink);
+  font: var(--font-size-content) / 1.6 var(--font-ui);
+}
+
+.page {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding-block: 32px 64px;
+  padding-inline: 16px;
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 28px;
+  font-size: var(--font-size-small);
+}
+
+.page h1 {
+  margin: 0 0 6px;
+  color: var(--about-title-ink);
+  font: bold 30px var(--font-title);
+  text-wrap: balance;
+}
+
+.page .tagline {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.page h2 {
+  margin: 28px 0 8px;
+  font: bold 17px var(--font-title);
+}
+
+.page p {
+  margin: 0 0 14px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 24px;
+  padding: 12px 14px;
+  border: 1px solid var(--group-border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  font-size: var(--font-size-small);
+}
+
+.facts dt {
+  color: var(--ink-muted);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.project-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-list a {
+  font: bold 15px var(--font-title);
+}
+
+.project-list p {
+  margin: 4px 0 0;
+  font-size: var(--font-size-small);
+}
+
+/* Placeholders carry the same look they have inside the desktop. */
+.page .todo,
+.page p:has(> code) {
+  font-family: var(--font-mono);
+}
