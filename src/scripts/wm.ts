@@ -87,6 +87,8 @@ function makeTaskButton(program: Program): HTMLButtonElement {
   task.className = 'task';
   task.dataset.program = program.id;
   task.setAttribute('aria-pressed', 'false');
+  // The strip is a toolbar: one tab stop for all of it, arrows move inside.
+  task.tabIndex = -1;
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
@@ -182,6 +184,7 @@ function focusWindow(id: ProgramId): void {
     target.task.setAttribute('aria-pressed', String(isActive));
     apply(target);
   }
+  syncTaskStops();
   save();
 }
 
@@ -202,6 +205,7 @@ function minimize(id: ProgramId): void {
   entry.task.classList.remove('active');
   entry.task.setAttribute('aria-pressed', 'false');
   apply(entry);
+  syncTaskStops();
   save();
   focusTopmost();
 }
@@ -222,6 +226,7 @@ function close(id: ProgramId): void {
   entry.el.classList.remove('active', 'max');
   entry.task.remove();
   open.delete(id);
+  syncTaskStops();
   save();
   entry.opener?.focus();
   focusTopmost();
@@ -484,6 +489,39 @@ function boot(): void {
     openProgram('computer', null, false);
   }
 }
+
+function taskButtons(): HTMLButtonElement[] {
+  return [...(taskbar?.querySelectorAll<HTMLButtonElement>('.task') ?? [])];
+}
+
+/**
+ * Roving tabindex for the taskbar. As a toolbar it holds a single tab stop,
+ * the active window's button, and the arrow keys move between the others.
+ */
+function syncTaskStops(): void {
+  const buttons = taskButtons();
+  if (buttons.length === 0) return;
+  const active = buttons.find((button) => button.classList.contains('active')) ?? buttons[0];
+  for (const button of buttons) button.tabIndex = button === active ? 0 : -1;
+}
+
+taskbar?.addEventListener('keydown', (event) => {
+  if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+
+  const buttons = taskButtons();
+  const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
+  if (index === -1) return;
+
+  const step = event.key === 'ArrowRight' ? 1 : -1;
+  const current = buttons[index];
+  const next = buttons[(index + step + buttons.length) % buttons.length];
+  if (!current || !next) return;
+
+  event.preventDefault();
+  current.tabIndex = -1;
+  next.tabIndex = 0;
+  next.focus();
+});
 
 // A reload or a closing tab must not lose the last change.
 window.addEventListener('pagehide', save);
