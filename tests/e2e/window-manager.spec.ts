@@ -115,6 +115,15 @@ test('raises the window that gets clicked', async ({ page }) => {
   await expect(page.locator('#win-agents')).toHaveClass(/active/);
   await expect(page.locator('#win-polaron')).not.toHaveClass(/active/);
 
+  // Move the top window clear of the one underneath, so this test measures
+  // focus rather than how two particular window sizes happen to stack.
+  const top = page.locator('#win-agents .titlebar');
+  const grab = (await top.boundingBox())!;
+  await page.mouse.move(grab.x + grab.width / 2, grab.y + grab.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(grab.x + grab.width / 2 + 60, grab.y + grab.height / 2 + 90);
+  await page.mouse.up();
+
   await page.locator('#win-polaron .titlebar').click();
   await expect(page.locator('#win-polaron')).toHaveClass(/active/);
   await expect(page.locator('#win-agents')).not.toHaveClass(/active/);

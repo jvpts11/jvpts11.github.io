@@ -84,8 +84,47 @@ body {
   font-size: var(--font-size-small);
 }
 
-/* Placeholders carry the same look they have inside the desktop. */
-.page .todo,
-.page p:has(> code) {
-  font-family: var(--font-mono);
+/* Placeholders read the same here as they do inside the desktop. */
+.page .todo {
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  border: 1px dashed var(--todo-line);
+  border-radius: var(--radius-sm);
+  background: var(--todo-bg);
+  color: var(--todo-ink);
+  font: var(--font-size-small) / 1.45 var(--font-mono);
+}
+
+/* Screenshots and their captions. */
+.page img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 6px;
+  border: 1px solid var(--group-border);
+  border-radius: var(--radius-lg);
+}
+
+.page p > em:only-child {
+  color: var(--ink-muted);
+  font-size: var(--font-size-small);
+}
+
+/* Source listings on a project page. */
+.page pre {
+  margin: 0 0 16px;
+  overflow-x: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--group-border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  font: var(--font-size-small) / 1.5 var(--font-mono);
+}
+
+.page code {
+  font: var(--font-size-small) / 1.5 var(--font-mono);
+}
+
+.page pre code {
+  font-size: inherit;
 }

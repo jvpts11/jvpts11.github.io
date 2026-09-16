@@ -14,4 +14,4 @@ install a system on it, and the network takes over storing, moving and crafting.
 
 ## Screenshots
 
-TODO(jvpts11): screenshots of the mod in game.
+<p class="todo">TODO(jvpts11): screenshots of the mod in game.</p>

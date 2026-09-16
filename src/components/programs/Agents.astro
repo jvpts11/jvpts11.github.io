@@ -1,6 +1,12 @@
 ---
 // Facts taken from the agents-exe repository README and its polaron.toml.
+// The screenshot was supplied by the owner.
+import { Image } from 'astro:assets';
+import world from '../../assets/agents-world.png';
+
 const REPO = 'https://github.com/jvpts11/agents-exe';
+const ALT =
+  'The generated world in agents.exe: a river crossing a dry plain, animals scattered over it, and forest on the higher ground';
 ---
 
 <div class="about agents">
@@ -14,6 +20,11 @@ const REPO = 'https://github.com/jvpts11/agents-exe';
       it, while somebody watches. Worldgen, renderer and simulation are all written in Polaron, with no
       engine underneath.
     </p>
+
+    <figure class="shot">
+      <Image src={world} alt={ALT} width={460} loading="lazy" />
+      <figcaption>Rivers cut the plain, herds graze it, and the forest holds the ridge.</figcaption>
+    </figure>
 
     <ul class="chips">
       <li><svg aria-hidden="true"><use href="#i-polaron"></use></svg>Written in Polaron</li>
@@ -30,8 +41,6 @@ const REPO = 'https://github.com/jvpts11/agents-exe';
         <li>The people are next, and after them nations, work and war</li>
       </ul>
     </fieldset>
-
-    <p class="todo">TODO(jvpts11): screenshots of the simulation.</p>
 
     <div class="dlg-actions">
       <a class="btn" href="/projects/agents/">Project page</a>

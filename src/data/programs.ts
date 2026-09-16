@@ -63,9 +63,10 @@ export const PROGRAMS: readonly Program[] = [
     title: 'agents.exe',
     label: 'agents.exe',
     icon: 'i-agents',
-    // Room for the status list, the placeholder and the buttons.
+    // Room for the screenshot, the status list and the buttons, while still
+    // fitting its cascade slot at 1280x720 instead of being clamped to the top.
     width: 520,
-    height: 460,
+    height: 610,
     desktop: true,
     menu: 'programs',
     hint: 'Civilization sim',
@@ -118,9 +119,9 @@ export const PROGRAMS: readonly Program[] = [
     title: 'Recycle Bin',
     label: 'Recycle Bin',
     icon: 'i-bin',
-    width: 480,
-    height: 300,
-    status: '0 objects',
+    width: 520,
+    height: 330,
+    status: '2 objects',
     desktop: true,
     menu: 'places',
   },

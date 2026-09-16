@@ -14,6 +14,10 @@ engine underneath it. The only thing borrowed is OpenGL itself, through
 the point: the game is the language's stress test, and every hole it walks into gets fixed in
 the compiler rather than worked around in the game.
 
+![The generated world in agents.exe: a river crossing a dry plain, animals scattered over it, and forest on the higher ground](../../assets/agents-world.png)
+
+*Rivers cut the plain, herds graze it, and the forest holds the ridge.*
+
 ## The ground
 
 A world of 2560×1440 cells is searched for rather than rolled: it is generated, measured against
@@ -33,7 +37,3 @@ above that is scripted:
 - the hunt has no chase routine at all: prey flees in bursts, a pack walks and does not tire,
   and the animal that falls behind is the animal that gets caught;
 - a species can end, permanently, and the world says which of five things did it.
-
-## Screenshots
-
-TODO(jvpts11): screenshots of the simulation.

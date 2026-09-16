@@ -1,6 +1,26 @@
 ---
-// Easter egg: archived and old projects. Empty until the owner says what
-// belongs here.
+// Easter egg: what has been superseded. Repository facts come from the GitHub
+// API (name, description, last push); nothing here claims a status the owner
+// has not stated.
+const ARCHIVED = [
+  {
+    name: 'Marble.io',
+    note: 'Prototype for a marble single button game.',
+    year: '2025',
+    repo: 'https://github.com/jvpts11/Marble.io',
+  },
+  {
+    name: 'PoolBallP3D',
+    note: 'A 3D pool ball project.',
+    year: '2025',
+    repo: 'https://github.com/jvpts11/PoolBallP3D',
+  },
+];
+
+const SUPERSEDED = [
+  'LDP3 — the name Polaron carried before it was renamed.',
+  'The original Unity build of agents.exe, replaced by the Polaron rewrite.',
+];
 ---
 
 <div class="explorer">
@@ -10,10 +30,33 @@
       <svg aria-hidden="true"><use href="#i-bin"></use></svg>Recycle Bin
     </div>
   </div>
+
   <div class="ex-view">
-    <div class="empty">
-      <span>The Recycle Bin is empty.</span>
-      <p class="todo">TODO(jvpts11): archived and old projects go here.</p>
-    </div>
+    <ul class="tiles" aria-label="Archived projects">
+      {
+        ARCHIVED.map((item) => (
+          <li>
+            <a class="tile" href={item.repo} target="_blank" rel="noopener">
+              <svg aria-hidden="true">
+                <use href="#i-bin" />
+              </svg>
+              <span>
+                <strong>{item.name}</strong>
+                <span>
+                  {item.note} Last touched in {item.year}.
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <fieldset class="group">
+      <legend>Deleted names</legend>
+      <ul class="devlist">
+        {SUPERSEDED.map((line) => <li>{line}</li>)}
+      </ul>
+    </fieldset>
   </div>
 </div>

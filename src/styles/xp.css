@@ -538,6 +538,21 @@
   font-size: var(--font-size-small);
 }
 
+/* A tile that is a link keeps the list look: only the name reads as one. */
+a.tile {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.tile strong {
+  color: var(--link);
+}
+
+a.tile:hover strong,
+a.tile:focus-visible strong {
+  text-decoration: underline;
+}
+
 .tile.selected {
   border-color: var(--select-soft-border);
   background: var(--select-soft);
@@ -986,4 +1001,24 @@
 .oe-links svg {
   width: 20px;
   height: 20px;
+}
+
+/* A screenshot inside a program window. */
+.shot {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.shot img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-sm);
+}
+
+.shot figcaption {
+  color: var(--ink-muted);
+  font-size: var(--font-size-small);
 }

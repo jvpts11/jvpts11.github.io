@@ -62,13 +62,12 @@ test('keeps the playlist intact and free of audio', async ({ page }) => {
 
 test('marks the facts that are still missing', async ({ page }) => {
   await page.goto('/');
-  // Still waiting on the owner: screenshots, and what belongs in the bin.
-  for (const id of ['agents', 'js-tech-series', 'recycle-bin']) {
-    const boxes = page.locator(`#win-${id} .todo`);
-    await expect(boxes.first()).toContainText('TODO(jvpts11)');
-  }
-  // The windows whose content is settled carry no placeholder at all.
-  for (const id of ['computer', 'projects', 'polaron', 'cmd', 'media', 'contact']) {
+  // Still waiting on the owner: screenshots of the mod in game.
+  await expect(page.locator('#win-js-tech-series .todo').first()).toContainText('TODO(jvpts11)');
+
+  // Everything else is settled and carries no placeholder at all.
+  const settled = ['computer', 'projects', 'polaron', 'agents', 'cmd', 'media', 'contact', 'recycle-bin'];
+  for (const id of settled) {
     await expect(page.locator(`#win-${id} .todo`)).toHaveCount(0);
   }
 });
