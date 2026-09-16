@@ -220,6 +220,22 @@
   --icon-shadow: drop-shadow(1px 2px 2px rgb(0 0 0 / 45%));
   --icon-label-shadow: 1px 1px 1px #000, 0 0 2px #000;
 
+  /* Static project pages: a banded document, in the same blue family */
+  --page-bg: #dde7f6;
+  --page-surface: #fff;
+  --page-band: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 22%) 0 3%,
+    rgb(255 255 255 / 6%) 3% 42%,
+    rgb(255 255 255 / 0%) 42% 100%
+  ),
+  linear-gradient(180deg, #2f8ffb 0%, #145fe0 38%, #0d4ec2 72%, #0a2f80 100%);
+  --page-band-ink: #fff;
+  --page-crumb-ink: rgb(255 255 255 / 82%);
+  --page-rule: #c3d2ea;
+  --page-shadow: 0 2px 10px rgb(10 36 106 / 18%);
+  --page-foot: #eef3fb;
+
   /* Notification balloon and shutdown screen */
   --balloon: #ffffe1;
   --balloon-border: #000;

@@ -7,4 +7,9 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://jvpts11.github.io',
   integrations: [sitemap()],
+  markdown: {
+    // The project pages are paper, not a terminal: highlight on a light
+    // background so a listing sits in the page instead of punching a hole.
+    shikiConfig: { theme: 'github-light' },
+  },
 });

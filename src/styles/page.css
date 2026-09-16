@@ -1,87 +1,163 @@
 /*
- * The static project pages. They are plain documents, readable on their own
- * and without the desktop, so they keep the palette but drop the chrome.
+ * The static project pages. They are documents rather than windows, but they
+ * stay in the same blue family as the desktop: a banded header, a white sheet
+ * of content, and blue section headings.
  */
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-  background: var(--beige);
+  background: var(--page-bg);
   color: var(--ink);
-  font: var(--font-size-content) / 1.6 var(--font-ui);
+  font: var(--font-size-content) / 1.65 var(--font-ui);
 }
 
+/* A short page still puts its footer at the bottom of the window. */
 .page {
-  max-width: 68ch;
-  margin: 0 auto;
-  padding-block: 32px 64px;
-  padding-inline: 16px;
+  flex: 1;
 }
 
-.page-nav {
+.band {
+  padding-block: 20px 22px;
+  background: var(--page-band);
+  color: var(--page-band-ink);
+}
+
+.band-inner {
+  max-width: 74ch;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+.crumbs {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 6px;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 10px;
   font-size: var(--font-size-small);
 }
 
-.page h1 {
-  margin: 0 0 6px;
-  color: var(--about-title-ink);
-  font: bold 30px var(--font-title);
+.crumbs a {
+  color: var(--page-crumb-ink);
+  text-decoration: none;
+}
+
+.crumbs a:hover,
+.crumbs a:focus-visible {
+  color: var(--page-band-ink);
+  text-decoration: underline;
+}
+
+.band h1 {
+  margin: 0;
+  font: bold 32px/1.15 var(--font-title);
+  text-shadow: 1px 1px 0 var(--title-shadow);
   text-wrap: balance;
 }
 
-.page .tagline {
-  margin: 0 0 20px;
+.band-tagline {
+  max-width: 60ch;
+  margin: 8px 0 0;
   font-size: 15px;
   line-height: 1.5;
 }
 
+.page {
+  padding-block: 24px 40px;
+  padding-inline: 20px;
+}
+
+.page-inner {
+  max-width: 74ch;
+  margin: 0 auto;
+  padding: 26px 30px 30px;
+  border: 1px solid var(--page-rule);
+  border-radius: var(--radius-lg);
+  background: var(--page-surface);
+  box-shadow: var(--page-shadow);
+}
+
+.page-inner > :first-child {
+  margin-top: 0;
+}
+
 .page h2 {
-  margin: 28px 0 8px;
-  font: bold 17px var(--font-title);
+  margin: 26px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--page-rule);
+  color: var(--about-title-ink);
+  font: bold 18px var(--font-title);
 }
 
 .page p {
   margin: 0 0 14px;
 }
 
+.page ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+.page li {
+  margin-bottom: 4px;
+}
+
+/* The facts panel borrows the explorer task pane: a header bar over a tinted body. */
 .facts {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 4px 12px;
-  margin: 0 0 24px;
+  gap: 6px 14px;
+  margin: 0 0 22px;
   padding: 12px 14px;
-  border: 1px solid var(--group-border);
-  border-radius: var(--radius-lg);
-  background: var(--white);
+  border: 1px solid var(--sm-right-line);
+  border-radius: var(--radius-md);
+  background: var(--sm-right);
   font-size: var(--font-size-small);
 }
 
 .facts dt {
-  color: var(--ink-muted);
+  color: var(--pane-ink);
+  font-weight: bold;
 }
 
 .facts dd {
   margin: 0;
 }
 
+/* The project index reads as a list of places, like the desktop's own lists. */
 .project-list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.project-list li {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--page-rule);
+  border-radius: var(--radius-md);
+  background: var(--page-foot);
+}
+
 .project-list a {
-  font: bold 15px var(--font-title);
+  font: bold 16px var(--font-title);
+  text-decoration: none;
+}
+
+.project-list a:hover,
+.project-list a:focus-visible {
+  text-decoration: underline;
 }
 
 .project-list p {
   margin: 4px 0 0;
   font-size: var(--font-size-small);
+  line-height: 1.5;
 }
 
 /* Placeholders read the same here as they do inside the desktop. */
@@ -101,30 +177,60 @@ body {
   max-width: 100%;
   height: auto;
   margin: 0 0 6px;
-  border: 1px solid var(--group-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--page-shadow);
 }
 
 .page p > em:only-child {
+  display: block;
+  margin-bottom: 18px;
   color: var(--ink-muted);
   font-size: var(--font-size-small);
+  font-style: normal;
 }
 
 /* Source listings on a project page. */
 .page pre {
   margin: 0 0 16px;
   overflow-x: auto;
-  padding: 10px 12px;
-  border: 1px solid var(--group-border);
-  border-radius: var(--radius-lg);
-  background: var(--white);
+  padding: 12px 14px;
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-md);
+  background: var(--beige);
   font: var(--font-size-small) / 1.5 var(--font-mono);
 }
 
-.page code {
+/* Inline code stays quiet: a run of eight of them in one sentence should read
+   as prose, not as a row of chips. */
+.page :not(pre) > code {
+  color: var(--about-title-ink);
   font: var(--font-size-small) / 1.5 var(--font-mono);
 }
 
 .page pre code {
   font-size: inherit;
+}
+
+.page-foot {
+  padding-block: 14px 28px;
+  border-top: 1px solid var(--page-rule);
+  background: var(--page-foot);
+  font-size: var(--font-size-small);
+}
+
+.page-foot .band-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .band h1 {
+    font-size: 26px;
+  }
+
+  .page-inner {
+    padding: 20px 18px 24px;
+  }
 }

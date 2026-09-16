@@ -19,16 +19,16 @@ const { Content } = await render(project);
 const { title, tagline, repo, language, platform, status } = project.data;
 ---
 
-<Document title={`${title} — jvpts11`} description={tagline}>
-  <nav class="page-nav">
-    <a href="/">jvpts11 OS</a>
-    <span aria-hidden="true">/</span>
-    <a href="/projects/">Projects</a>
-  </nav>
-
-  <h1>{title}</h1>
-  <p class="tagline">{tagline}</p>
-
+<Document
+  title={`${title} — jvpts11`}
+  description={tagline}
+  heading={title}
+  tagline={tagline}
+  crumbs={[
+    { href: '/', label: 'jvpts11 OS' },
+    { href: '/projects/', label: 'Projects' },
+  ]}
+>
   <dl class="facts">
     <dt>Repository</dt>
     <dd><a href={repo}>{repo.replace('https://github.com/', '')}</a></dd>
@@ -38,9 +38,9 @@ const { title, tagline, repo, language, platform, status } = project.data;
     {platform && <dd>{platform}</dd>}
     {status && <dt>Status</dt>}
     {status && <dd>{status}</dd>}
+    <dt>On the desktop</dt>
+    <dd><a href={`/?open=${project.id}`}>Open {title}</a></dd>
   </dl>
 
   <Content />
-
-  <p><a href={`/?open=${project.id}`}>Open {title} on the desktop</a></p>
 </Document>

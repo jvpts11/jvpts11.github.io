@@ -8,14 +8,10 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 <Document
   title="Projects — jvpts11"
   description="Everything jvpts11 builds: Polaron, agents.exe and js-tech-series."
+  heading="Projects"
+  tagline="Everything jvpts11 builds. Each one also opens as a program on the desktop."
+  crumbs={[{ href: '/', label: 'jvpts11 OS' }]}
 >
-  <nav class="page-nav">
-    <a href="/">jvpts11 OS</a>
-  </nav>
-
-  <h1>Projects</h1>
-  <p class="tagline">Everything jvpts11 builds. Each one also opens as a program on the desktop.</p>
-
   <ul class="project-list">
     {
       projects.map((project) => (

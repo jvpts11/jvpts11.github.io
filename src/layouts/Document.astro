@@ -2,12 +2,21 @@
 import '../styles/tokens.css';
 import '../styles/page.css';
 
+interface Crumb {
+  href: string;
+  label: string;
+}
+
 interface Props {
   title: string;
   description: string;
+  /** Shown large on the blue band. */
+  heading: string;
+  tagline?: string;
+  crumbs?: Crumb[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, heading, tagline, crumbs = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,8 +30,35 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <header class="band">
+      <div class="band-inner">
+        {
+          crumbs.length > 0 && (
+            <nav class="crumbs" aria-label="Breadcrumb">
+              {crumbs.map((crumb, i) => (
+                <>
+                  {i > 0 && <span aria-hidden="true">›</span>}
+                  <a href={crumb.href}>{crumb.label}</a>
+                </>
+              ))}
+            </nav>
+          )
+        }
+        <h1>{heading}</h1>
+        {tagline && <p class="band-tagline">{tagline}</p>}
+      </div>
+    </header>
+
     <main class="page">
-      <slot />
+      <div class="page-inner"><slot /></div>
     </main>
+
+    <footer class="page-foot">
+      <div class="band-inner">
+        <a href="/">Back to the desktop</a>
+        <span aria-hidden="true">·</span>
+        <a href="/projects/">All projects</a>
+      </div>
+    </footer>
   </body>
 </html>
