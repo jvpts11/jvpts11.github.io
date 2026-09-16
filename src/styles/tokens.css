@@ -174,6 +174,7 @@
   --banner-polaron: linear-gradient(180deg, #0a246a 0%, #1d5cd6 60%, #6fa7f5 100%);
   --banner-agents: linear-gradient(180deg, #0e3b2a 0%, #1f7a4a 60%, #7ccb7a 100%);
   --banner-jts: linear-gradient(180deg, #2b1d10 0%, #5e3f25 55%, #8fd14f 100%);
+  --banner-forge: linear-gradient(180deg, #2a1c0c 0%, #7a4a18 55%, #f0a030 100%);
   --chip-border: #b9c4d6;
 
   /* Placeholder box for facts the owner has not supplied yet */

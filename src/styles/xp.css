@@ -606,6 +606,10 @@ a.tile:focus-visible strong {
   background: var(--banner-jts);
 }
 
+.about.forge .about-banner {
+  background: var(--banner-forge);
+}
+
 .about-body {
   display: flex;
   flex: 1;

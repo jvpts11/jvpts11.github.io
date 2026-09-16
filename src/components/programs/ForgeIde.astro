@@ -1,0 +1,42 @@
+---
+// Facts taken from the Forge-IDE repository README.
+const REPO = 'https://github.com/jvpts11/Forge-IDE';
+---
+
+<div class="about forge">
+  <div class="about-banner">
+    <svg aria-hidden="true"><use href="#i-forge"></use></svg>Forge
+  </div>
+  <div class="about-body">
+    <h3 class="about-title">Forge</h3>
+    <p class="lead">
+      The IDE for Polaron, written in Polaron. A native, from-scratch editor with navigation, git,
+      build and run, integrated terminals and a debugger client, drawn on the GPU through
+      Polaron-OpenGL. It is how the language proves it can carry GUI-heavy software.
+    </p>
+
+    <ul class="chips">
+      <li><svg aria-hidden="true"><use href="#i-polaron"></use></svg>Written in Polaron</li>
+      <li>GPU rendered</li>
+      <li>400+ self-checks</li>
+    </ul>
+
+    <fieldset class="group">
+      <legend>What works today</legend>
+      <ul class="devlist">
+        <li>Multi-cursor editing, folding, find and replace across files</li>
+        <li>Go to definition, outline, workspace symbols, command palette</li>
+        <li>Live diagnostics: the compiler runs on the unsaved buffer</li>
+        <li>Git status, commit, push, branches and a diff view</li>
+        <li>Integrated terminals behind a real pseudo-console</li>
+        <li>Debug Adapter Protocol client with breakpoints and stepping</li>
+      </ul>
+    </fieldset>
+
+    <div class="dlg-actions">
+      <a class="btn" href="/projects/forge-ide/">Project page</a>
+      <a class="btn" href={REPO} target="_blank" rel="noopener">Open on GitHub</a>
+      <button class="btn" type="button" data-close>Close</button>
+    </div>
+  </div>
+</div>

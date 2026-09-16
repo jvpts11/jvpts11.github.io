@@ -4,6 +4,7 @@ const PROGRAM_IDS = [
   'computer',
   'projects',
   'polaron',
+  'forge-ide',
   'agents',
   'js-tech-series',
   'cmd',
@@ -14,7 +15,7 @@ const PROGRAM_IDS = [
 
 test('ships every window in the HTML', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('section.win')).toHaveCount(9);
+  await expect(page.locator('section.win')).toHaveCount(10);
   for (const id of PROGRAM_IDS) {
     const win = page.locator(`#win-${id}`);
     await expect(win).toHaveAttribute('role', 'dialog');
@@ -24,9 +25,9 @@ test('ships every window in the HTML', async ({ page }) => {
 
 test('gives every window the three chrome controls', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('section.win .ctl.min')).toHaveCount(9);
-  await expect(page.locator('section.win .ctl.max')).toHaveCount(9);
-  await expect(page.locator('section.win .ctl.close')).toHaveCount(9);
+  await expect(page.locator('section.win .ctl.min')).toHaveCount(10);
+  await expect(page.locator('section.win .ctl.max')).toHaveCount(10);
+  await expect(page.locator('section.win .ctl.close')).toHaveCount(10);
   await expect(page.locator('#win-cmd .ttext')).toHaveText('Command Prompt');
 });
 
@@ -34,6 +35,7 @@ test('carries the confirmed project facts', async ({ page }) => {
   await page.goto('/');
   const html = await page.content();
   expect(html).toContain('https://github.com/jvpts11/Polaron');
+  expect(html).toContain('https://github.com/jvpts11/Forge-IDE');
   expect(html).toContain('https://github.com/jvpts11/agents-exe');
   expect(html).toContain('https://github.com/jvpts11/js-tech-series');
   expect(html).toContain('mailto:jvptsyt11@gmail.com');

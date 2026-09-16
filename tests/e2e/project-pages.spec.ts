@@ -4,6 +4,7 @@ import { expect, test } from '@playwright/test';
 // desktop. The slugs match the program ids the ?open= deep link uses.
 const PROJECTS = [
   { slug: 'polaron', title: 'Polaron', repo: 'https://github.com/jvpts11/Polaron' },
+  { slug: 'forge-ide', title: 'Forge', repo: 'https://github.com/jvpts11/Forge-IDE' },
   { slug: 'agents', title: 'agents.exe', repo: 'https://github.com/jvpts11/agents-exe' },
   {
     slug: 'js-tech-series',

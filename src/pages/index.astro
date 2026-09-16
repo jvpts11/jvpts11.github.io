@@ -3,6 +3,7 @@ import Window from '../components/Window.astro';
 import Agents from '../components/programs/Agents.astro';
 import CommandPrompt from '../components/programs/CommandPrompt.astro';
 import Contact from '../components/programs/Contact.astro';
+import ForgeIde from '../components/programs/ForgeIde.astro';
 import JsTechSeries from '../components/programs/JsTechSeries.astro';
 import MediaPlayer from '../components/programs/MediaPlayer.astro';
 import MyComputer from '../components/programs/MyComputer.astro';
@@ -24,6 +25,7 @@ const projectCount = (await getCollection('projects')).length;
   <Window program={getProgram('computer')}><MyComputer /></Window>
   <Window program={getProgram('projects')} status={`${projectCount} objects`}><MyProjects /></Window>
   <Window program={getProgram('polaron')}><Polaron /></Window>
+  <Window program={getProgram('forge-ide')}><ForgeIde /></Window>
   <Window program={getProgram('agents')}><Agents /></Window>
   <Window program={getProgram('js-tech-series')}><JsTechSeries /></Window>
   <Window program={getProgram('cmd')}><CommandPrompt /></Window>

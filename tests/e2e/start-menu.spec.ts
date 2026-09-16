@@ -54,7 +54,7 @@ test('builds both start menu columns from the registry', async ({ page }) => {
   await page.goto('/');
   await page.locator('#startbtn').click();
 
-  await expect(page.locator('#startmenu .sm-left .sm-item')).toHaveCount(6);
+  await expect(page.locator('#startmenu .sm-left .sm-item')).toHaveCount(7);
   await expect(page.locator('#startmenu .sm-right .sm-item[data-launch]')).toHaveCount(3);
   await expect(page.locator('#startmenu .sm-right a[href="https://github.com/jvpts11"]')).toBeVisible();
   await expect(page.locator('#startmenu .sm-head')).toContainText('jvpts11');

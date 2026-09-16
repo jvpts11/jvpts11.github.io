@@ -59,6 +59,17 @@ export const PROGRAMS: readonly Program[] = [
     hint: 'Systems language',
   },
   {
+    id: 'forge-ide',
+    title: 'Forge.exe',
+    label: 'Forge.exe',
+    icon: 'i-forge',
+    width: 560,
+    height: 560,
+    desktop: true,
+    menu: 'programs',
+    hint: 'IDE for Polaron',
+  },
+  {
     id: 'agents',
     title: 'agents.exe',
     label: 'agents.exe',

@@ -8,6 +8,7 @@ export const PROGRAM_IDS = [
   'computer',
   'projects',
   'polaron',
+  'forge-ide',
   'agents',
   'js-tech-series',
   'cmd',

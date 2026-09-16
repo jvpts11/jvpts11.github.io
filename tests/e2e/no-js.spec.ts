@@ -10,7 +10,7 @@ test('shows every program as ordinary content', async ({ page }) => {
   await expect(page.locator('#win-polaron')).toBeVisible();
   await expect(page.locator('#win-media')).toBeVisible();
   await expect(page.locator('#win-recycle-bin')).toBeVisible();
-  await expect(page.locator('section.win')).toHaveCount(9);
+  await expect(page.locator('section.win')).toHaveCount(10);
 });
 
 test('hides the shell chrome that needs scripting', async ({ page }) => {
