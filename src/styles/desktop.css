@@ -179,7 +179,7 @@ a {
   margin: 0;
   padding: 0 22px 0 10px;
   border: 0;
-  border-radius: 0 12px 12px 0;
+  border-radius: var(--start-radius);
   background: var(--start);
   box-shadow: var(--start-shadow);
   color: var(--white);

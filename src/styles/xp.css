@@ -38,6 +38,7 @@
   padding: 0 var(--radius-md) 0 5px;
   border-radius: 7px 7px 0 0;
   background: var(--title-inactive);
+  box-shadow: var(--titlebar-edge);
   color: var(--white);
   user-select: none;
   touch-action: none;
@@ -164,7 +165,7 @@
 }
 
 .btn:hover:not(:disabled) {
-  box-shadow: inset 0 -2px 0 var(--focus-orange), inset 0 2px 0 var(--focus-orange-soft);
+  box-shadow: var(--btn-hover-glow);
 }
 
 .btn:focus-visible {

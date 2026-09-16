@@ -49,28 +49,51 @@
   /* Window frame and title bar */
   --frame: #0a4ecf;
   --frame-inactive: #6f87c8;
-  --title-active: linear-gradient(
-    180deg,
-    #3a8cff 0%,
-    #1f6ff0 6%,
-    #0a5ae0 30%,
-    #0b57d9 70%,
-    #0a48c0 92%,
-    #0a246a 100%
-  );
-  --title-inactive: linear-gradient(180deg, #9cb2e3 0%, #6e88cc 8%, #5670b8 40%, #4f6ab5 88%, #43599a 100%);
+  --title-active:
+    linear-gradient(
+      180deg,
+      rgb(255 255 255 / 38%) 0 4%,
+      rgb(255 255 255 / 11%) 4% 46%,
+      rgb(255 255 255 / 0%) 46% 100%
+    ),
+    linear-gradient(
+      180deg,
+      #4ea3ff 0%,
+      #1c78f2 10%,
+      #0f5ee6 34%,
+      #0d55d8 62%,
+      #0b47bb 86%,
+      #0a2f80 97%,
+      #082566 100%
+    );
+  --title-inactive:
+    linear-gradient(
+      180deg,
+      rgb(255 255 255 / 24%) 0 4%,
+      rgb(255 255 255 / 7%) 4% 46%,
+      rgb(255 255 255 / 0%) 46% 100%
+    ),
+    linear-gradient(180deg, #93a9d6 0%, #6d86bd 12%, #5b74a6 45%, #556d9c 80%, #4a5f88 100%);
+  --titlebar-edge: inset 0 -1px 0 rgb(0 0 0 / 32%), inset 0 1px 0 rgb(255 255 255 / 35%);
   --title-shadow: #0a1f6e;
   --win-shadow: 0 6px 18px rgb(0 0 0 / 35%);
 
   /* Window controls */
-  --ctl-blue: linear-gradient(180deg, #5c9bff 0%, #2d6fea 45%, #1f59d6 100%);
-  --ctl-red: linear-gradient(135deg, #f3a37f 0%, #e2562e 45%, #c4371a 100%);
+  --ctl-blue:
+    linear-gradient(180deg, rgb(255 255 255 / 45%) 0 45%, rgb(255 255 255 / 0%) 45% 100%),
+    linear-gradient(180deg, #5c9bff 0%, #2d6fea 45%, #1b4fc6 100%);
+  --ctl-red:
+    linear-gradient(180deg, rgb(255 255 255 / 45%) 0 45%, rgb(255 255 255 / 0%) 45% 100%),
+    linear-gradient(160deg, #f0977a 0%, #e2562e 45%, #b33117 100%);
   --ctl-border: #fff;
   --ctl-shadow: inset -1px -1px 1px rgb(0 0 0 / 25%);
 
   /* Buttons, inputs, groups and tabs */
   --btn-border: #003c74;
-  --btn-face: linear-gradient(180deg, #fff 0%, #ecebe6 86%, #d6d0c5 100%);
+  --btn-face:
+    linear-gradient(180deg, rgb(255 255 255 / 85%) 0 42%, rgb(255 255 255 / 0%) 42% 100%),
+    linear-gradient(180deg, #fbfbf9 0%, #efeee9 55%, #dedbd0 90%, #cfcbbe 100%);
+  --btn-hover-glow: 0 0 0 1px #f5a623, inset 0 0 6px 1px rgb(255 190 80 / 65%);
   --btn-face-active: linear-gradient(180deg, #e3e3db, #f2f1ee);
   --field-border: #7f9db9;
   --group-border: #d0d0bf;
@@ -82,12 +105,32 @@
   --status-shadow-dark: #a7a395;
 
   /* Taskbar */
-  --taskbar: linear-gradient(180deg, #3c86f0 0%, #2a68dd 8%, #245edc 20%, #245edc 88%, #1941a5 100%);
+  --taskbar: linear-gradient(
+    180deg,
+    #58a8ff 0 2px,
+    #2f7ae8 2px 8%,
+    #2463d9 16%,
+    #2059cf 88%,
+    #143f9e 96%,
+    #0e2f7d 100%
+  );
   --taskbar-border: #0b3ca8;
-  --task-btn: linear-gradient(180deg, #4a8cf2 0%, #3070dd 12%, #2c69d6 88%, #255cc6 100%);
-  --task-btn-active: linear-gradient(180deg, #1a45a8 0%, #1e4fb6 15%, #1e4fb6 100%);
+  --task-btn:
+    linear-gradient(180deg, rgb(255 255 255 / 30%) 0 45%, rgb(255 255 255 / 0%) 45% 100%),
+    linear-gradient(180deg, #4a8cf2 0%, #3070dd 12%, #2c69d6 88%, #2453bb 100%);
+  --task-btn-active:
+    linear-gradient(180deg, rgb(0 0 0 / 12%) 0 45%, rgb(0 0 0 / 0%) 45% 100%),
+    linear-gradient(180deg, #1a45a8 0%, #1e4fb6 15%, #2155c0 100%);
   --task-border: #1c49ae;
-  --start: linear-gradient(180deg, #5db65d 0%, #3a963a 10%, #2e842e 50%, #2a7a2a 88%, #1f5e1f 100%);
+  --start:
+    linear-gradient(
+      180deg,
+      rgb(255 255 255 / 40%) 0 3%,
+      rgb(255 255 255 / 14%) 3% 48%,
+      rgb(255 255 255 / 0%) 48% 100%
+    ),
+    linear-gradient(180deg, #62c14e 0%, #3f9c33 12%, #2f8a28 45%, #2a7d24 75%, #216a1d 92%, #175416 100%);
+  --start-radius: 0 16px 16px 0 / 0 50% 50% 0;
   --start-shadow: inset 0 1px 0 rgb(255 255 255 / 35%), inset -2px 0 3px rgb(0 0 0 / 25%), 2px 0 3px rgb(0 0 0 / 25%);
   --start-pressed-shadow: inset 1px 2px 4px rgb(0 0 0 / 45%);
   --start-text-shadow: 1px 1px 2px rgb(0 0 0 / 55%);
@@ -95,7 +138,14 @@
   --task-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
   --task-active-shadow: inset 1px 1px 2px rgb(0 0 0 / 45%);
   --tray-shadow: inset 1px 0 1px rgb(255 255 255 / 30%);
-  --tray: linear-gradient(180deg, #2b93f0 0%, #0c72d2 10%, #0a6fcb 88%, #095cab 100%);
+  --tray: linear-gradient(
+    180deg,
+    #3ba0f5 0 2px,
+    #0d78d8 2px 12%,
+    #0a6fcb 88%,
+    #095cab 96%,
+    #06478a 100%
+  );
   --tray-border: #083e9e;
 
   /* Start menu */
