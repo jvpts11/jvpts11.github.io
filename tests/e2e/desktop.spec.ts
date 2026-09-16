@@ -19,5 +19,18 @@ test('points every icon at its window section', async ({ page }) => {
 
 test('never calls itself Windows', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('body')).not.toContainText('Windows');
+
+  // The rule is about what this interface calls itself. The word may appear as
+  // a fact inside a program, such as a compilation target Polaron supports,
+  // but never in the chrome and never as a claim about this desktop.
+  await expect(page).toHaveTitle(/jvpts11 OS/);
+  await expect(page.locator('#startbtn')).toHaveText(/start/i);
+
+  const chrome = page.locator('.ttext, .icon .label, .taskbar, #startmenu');
+  for (const text of await chrome.allTextContents()) {
+    expect(text).not.toMatch(/Windows/);
+  }
+
+  const html = await page.content();
+  expect(html).not.toMatch(/Microsoft|Windows\s?(XP|95|98|2000|7|10|11)/);
 });

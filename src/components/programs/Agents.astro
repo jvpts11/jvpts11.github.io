@@ -1,6 +1,5 @@
 ---
-// Facts confirmed by the owner on 2026-09-15: the repository link.
-// What the sim does today is still a placeholder on purpose.
+// Facts taken from the agents-exe repository README and its polaron.toml.
 const REPO = 'https://github.com/jvpts11/agents-exe';
 ---
 
@@ -11,18 +10,31 @@ const REPO = 'https://github.com/jvpts11/agents-exe';
   <div class="about-body">
     <h3 class="about-title">agents.exe</h3>
     <p class="lead">
-      An LLM-driven civilization simulation, rewritten in Polaron. This is the new version, not the original
-      Unity one.
+      A god-game built from nothing: a world that is generated, populated and then left to get on with
+      it, while somebody watches. Worldgen, renderer and simulation are all written in Polaron, with no
+      engine underneath.
     </p>
 
     <ul class="chips">
       <li><svg aria-hidden="true"><use href="#i-polaron"></use></svg>Written in Polaron</li>
-      <li><svg aria-hidden="true"><use href="#i-agents"></use></svg>LLM-driven agents</li>
+      <li>2560×1440 cells</li>
+      <li>17 species</li>
     </ul>
 
-    <p class="todo">TODO(jvpts11): what the sim does today, its status and screenshots.</p>
+    <fieldset class="group">
+      <legend>Status: the ground and the fauna are alive</legend>
+      <ul class="devlist">
+        <li>Plates, coastlines, climate, rivers, biomes, forests and ore</li>
+        <li>About fifteen thousand animals that graze, herd, flee, hunt and starve</li>
+        <li>A species can end permanently, and the world says what did it</li>
+        <li>The people are next, and after them nations, work and war</li>
+      </ul>
+    </fieldset>
+
+    <p class="todo">TODO(jvpts11): screenshots of the simulation.</p>
 
     <div class="dlg-actions">
+      <a class="btn" href="/projects/agents/">Project page</a>
       <a class="btn" href={REPO} target="_blank" rel="noopener">Open on GitHub</a>
       <button class="btn" type="button" data-close>Close</button>
     </div>

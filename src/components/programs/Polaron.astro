@@ -1,7 +1,19 @@
 ---
-// Facts confirmed by the owner on 2026-09-15: the repository link.
-// Everything else is still a placeholder on purpose.
+// Facts taken from the Polaron repository README and examples/hello.pol.
 const REPO = 'https://github.com/jvpts11/Polaron';
+const HELLO = `import System.IO.Console;
+
+program Hello;
+
+public bundle main {
+    public namespace examples {
+        public class Main {
+            public static method main(string[] args) returns void {
+                System.IO.Console.printf("Hello, world!\\n");
+            }
+        }
+    }
+}`;
 ---
 
 <div class="about">
@@ -10,19 +22,35 @@ const REPO = 'https://github.com/jvpts11/Polaron';
   </div>
   <div class="about-body">
     <h3 class="about-title">Polaron</h3>
-    <p class="lead">A systems language designed by jvpts11, and the ecosystem growing around it.</p>
+    <p class="lead">
+      High level, to the bare metal. An object-orientation-mandatory, manually memory-managed systems
+      language that compiles to native code through LLVM, as fast as C and C++ and safer by
+      construction.
+    </p>
+
+    <ul class="chips">
+      <li>LLVM back end</li>
+      <li>No garbage collector</li>
+      <li>No exploitable UB</li>
+    </ul>
 
     <fieldset class="group">
-      <legend>Ecosystem</legend>
-      <p class="todo">TODO(jvpts11): compiler, standard library and tooling. What exists today and its status.</p>
+      <legend>What runs today</legend>
+      <ul class="devlist">
+        <li>The suite is 952 tests</li>
+        <li>x86-64 Windows and Linux</li>
+        <li>i686 and aarch64 kernels, booted under QEMU</li>
+        <li>wasm32, loaded in a real browser</li>
+      </ul>
     </fieldset>
 
     <fieldset class="group">
-      <legend>Sample</legend>
-      <p class="todo">TODO(jvpts11): a short Polaron snippet to show here.</p>
+      <legend>hello.pol</legend>
+      <pre class="code">{HELLO}</pre>
     </fieldset>
 
     <div class="dlg-actions">
+      <a class="btn" href="/projects/polaron/">Project page</a>
       <a class="btn" href={REPO} target="_blank" rel="noopener">Open on GitHub</a>
       <button class="btn" type="button" data-close>Close</button>
     </div>

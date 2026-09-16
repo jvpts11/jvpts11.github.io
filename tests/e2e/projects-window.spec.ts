@@ -19,7 +19,7 @@ test('shows the tagline each project file declares', async ({ page }) => {
     'Computers that run the logistics',
   );
   await expect(page.locator('#win-projects .tile[data-program="polaron"]')).toContainText(
-    'A systems language designed by jvpts11',
+    'High level, to the bare metal',
   );
 });
 

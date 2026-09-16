@@ -62,13 +62,13 @@ test('keeps the playlist intact and free of audio', async ({ page }) => {
 
 test('marks the facts that are still missing', async ({ page }) => {
   await page.goto('/');
-  // A window may carry more than one placeholder, so assert on the first of each.
-  for (const id of ['polaron', 'agents', 'js-tech-series', 'recycle-bin']) {
+  // Still waiting on the owner: screenshots, and what belongs in the bin.
+  for (const id of ['agents', 'js-tech-series', 'recycle-bin']) {
     const boxes = page.locator(`#win-${id} .todo`);
     await expect(boxes.first()).toContainText('TODO(jvpts11)');
   }
   // The windows whose content is settled carry no placeholder at all.
-  for (const id of ['computer', 'projects', 'cmd', 'media', 'contact']) {
+  for (const id of ['computer', 'projects', 'polaron', 'cmd', 'media', 'contact']) {
     await expect(page.locator(`#win-${id} .todo`)).toHaveCount(0);
   }
 });
