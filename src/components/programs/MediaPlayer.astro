@@ -1,0 +1,68 @@
+---
+// The owner's favorite songs: artist and title only. No audio, no lyrics and
+// no album art, so nothing copyrighted is reproduced here.
+export const SONGS = [
+  { artist: 'Three Days Grace', title: 'Riot' },
+  { artist: 'Breaking Benjamin', title: 'The Diary of Jane' },
+  { artist: 'Three Days Grace', title: 'Animal I Have Become' },
+  { artist: 'Breaking Benjamin', title: 'So Cold' },
+  { artist: 'Charlie Brown Jr.', title: 'Só Por Uma Noite' },
+  { artist: 'Charlie Brown Jr.', title: 'Dona do Meu Pensamento' },
+  { artist: 'The Killers', title: 'Mr. Brightside' },
+  { artist: 'Three Days Grace', title: 'Painkiller' },
+  { artist: 'Foo Fighters', title: 'Everlong' },
+];
+
+const first = SONGS[0]!;
+const bars = Array.from({ length: 18 });
+---
+
+<div class="wmp">
+  <div class="wmp-screen">
+    <div class="viz" aria-hidden="true">{bars.map(() => <i />)}</div>
+    <div class="now">
+      <span class="now-label">
+        Favorite Songs · Track <span data-idx>1</span> of <span data-count>{SONGS.length}</span>
+      </span>
+      <strong data-title>{first.title}</strong>
+      <span class="now-artist" data-artist>{first.artist}</span>
+    </div>
+  </div>
+
+  <div class="wmp-side">
+    <h3>Favorite Songs <span data-count-label>{SONGS.length} tracks</span></h3>
+    <ol class="playlist" data-playlist aria-label="Favorite Songs">
+      {
+        SONGS.map((song, index) => (
+          <li>
+            <button class="track" type="button" data-track={index} aria-current={index === 0 ? 'true' : 'false'}>
+              <span class="n">{index + 1}</span>
+              <b>{song.title}</b>
+              <small>{song.artist}</small>
+            </button>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="wmp-controls">
+    <button class="pbtn sm" type="button" data-prev aria-label="Previous track">
+      <svg viewBox="0 0 12 12" aria-hidden="true">
+        <rect x="1" y="1.5" width="1.8" height="9" fill="currentColor"></rect>
+        <path d="M11 1.5v9L3.5 6z" fill="currentColor"></path>
+      </svg>
+    </button>
+    <button class="pbtn" type="button" data-play aria-label="Play" aria-pressed="false">
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1v10L11 6z" fill="currentColor"></path></svg>
+    </button>
+    <button class="pbtn sm" type="button" data-next aria-label="Next track">
+      <svg viewBox="0 0 12 12" aria-hidden="true">
+        <rect x="9.2" y="1.5" width="1.8" height="9" fill="currentColor"></rect>
+        <path d="M1 1.5v9L8.5 6z" fill="currentColor"></path>
+      </svg>
+    </button>
+    <div class="seek" aria-hidden="true"><span></span></div>
+    <span class="time">00:00</span>
+  </div>
+</div>

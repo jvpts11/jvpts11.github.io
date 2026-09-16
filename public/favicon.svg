@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="jvpts11 OS">
+  <!-- Original mark drawn for this project: a small window on a Luna-blue tile. -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3A8CFF" />
+      <stop offset="1" stop-color="#0A246A" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5AA2FF" />
+      <stop offset="1" stop-color="#0A50CC" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="url(#tile)" />
+  <rect x="6" y="8" width="20" height="16" rx="2.5" fill="#ECE9D8" stroke="#0A246A" stroke-width="1.5" />
+  <path d="M6 10.5A2.5 2.5 0 0 1 8.5 8h15A2.5 2.5 0 0 1 26 10.5V13H6z" fill="url(#bar)" />
+  <circle cx="23.2" cy="10.5" r="1.1" fill="#F3A37F" />
+  <path d="M9.5 17h9M9.5 20h6" stroke="#6F87C8" stroke-width="1.6" stroke-linecap="round" />
+</svg>

@@ -1,0 +1,89 @@
+---
+// About jvpts11, shaped like a system properties dialog.
+// Languages and tools are exactly what the owner listed on 2026-09-15.
+const LANGUAGES = ['C/C++', 'C#', 'Java', 'Python'];
+const TOOLS = ['Visual Studio', 'IntelliJ', 'Rider', 'Unity', 'OpenGL'];
+const SKILLS = [
+  { id: 'ai', label: 'AI engineering' },
+  { id: 'lang', label: 'Language design (Polaron)' },
+  { id: 'sim', label: 'LLM-driven simulation' },
+  { id: 'mod', label: 'Minecraft modding (NeoForge)' },
+];
+---
+
+<div class="dlg">
+  <div class="tabs" role="tablist" aria-label="System properties">
+    <button role="tab" type="button" id="tab-general" aria-selected="true" aria-controls="panel-general">
+      General
+    </button>
+    <button role="tab" type="button" id="tab-hardware" aria-selected="false" aria-controls="panel-hardware" tabindex="-1">
+      Hardware
+    </button>
+    <button role="tab" type="button" id="tab-skills" aria-selected="false" aria-controls="panel-skills" tabindex="-1">
+      Skills
+    </button>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="panel-general" aria-labelledby="tab-general">
+    <div class="sys">
+      <div class="sys-art"><svg aria-hidden="true"><use href="#i-computer"></use></svg></div>
+      <dl class="sys-info">
+        <dt>System:</dt>
+        <dd>jvpts11 OS<br />Portfolio Edition<br />Version 0.1</dd>
+        <dt>Registered to:</dt>
+        <dd><b>jvpts11</b><br />AI engineer</dd>
+        <dt>Currently building:</dt>
+        <dd>Polaron, a systems language<br />agents.exe, written in Polaron<br />js-tech-series, a NeoForge mod</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="panel-hardware" aria-labelledby="tab-hardware" hidden>
+    <fieldset class="group">
+      <legend>Processors (languages)</legend>
+      <ul class="devlist">
+        {
+          LANGUAGES.map((language) => (
+            <li>
+              <svg aria-hidden="true"><use href="#i-chip"></use></svg>
+              {language}
+            </li>
+          ))
+        }
+      </ul>
+    </fieldset>
+    <fieldset class="group">
+      <legend>Devices (tools)</legend>
+      <ul class="devlist">
+        {
+          TOOLS.map((tool) => (
+            <li>
+              <svg aria-hidden="true"><use href="#i-chip"></use></svg>
+              {tool}
+            </li>
+          ))
+        }
+      </ul>
+    </fieldset>
+  </div>
+
+  <div class="tabpanel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" hidden>
+    <fieldset class="group">
+      <legend>Installed components</legend>
+      {
+        SKILLS.map((skill) => (
+          <label class="chk">
+            <input type="checkbox" id={`sk-${skill.id}`} checked disabled />
+            {skill.label}
+          </label>
+        ))
+      }
+    </fieldset>
+  </div>
+
+  <div class="dlg-actions">
+    <button class="btn" type="button" data-close>OK</button>
+    <button class="btn" type="button" data-close>Cancel</button>
+    <button class="btn" type="button" disabled>Apply</button>
+  </div>
+</div>

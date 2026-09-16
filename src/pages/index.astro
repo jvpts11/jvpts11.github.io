@@ -1,0 +1,29 @@
+---
+import Window from '../components/Window.astro';
+import Agents from '../components/programs/Agents.astro';
+import CommandPrompt from '../components/programs/CommandPrompt.astro';
+import Contact from '../components/programs/Contact.astro';
+import JsTechSeries from '../components/programs/JsTechSeries.astro';
+import MediaPlayer from '../components/programs/MediaPlayer.astro';
+import MyComputer from '../components/programs/MyComputer.astro';
+import MyProjects from '../components/programs/MyProjects.astro';
+import Polaron from '../components/programs/Polaron.astro';
+import RecycleBin from '../components/programs/RecycleBin.astro';
+import { getProgram } from '../data/programs';
+import Desktop from '../layouts/Desktop.astro';
+---
+
+<Desktop
+  title="jvpts11 OS"
+  description="Portfolio of jvpts11, AI engineer: a desktop you can click through, with one program per project."
+>
+  <Window program={getProgram('computer')}><MyComputer /></Window>
+  <Window program={getProgram('projects')}><MyProjects /></Window>
+  <Window program={getProgram('polaron')}><Polaron /></Window>
+  <Window program={getProgram('agents')}><Agents /></Window>
+  <Window program={getProgram('js-tech-series')}><JsTechSeries /></Window>
+  <Window program={getProgram('cmd')}><CommandPrompt /></Window>
+  <Window program={getProgram('media')}><MediaPlayer /></Window>
+  <Window program={getProgram('contact')}><Contact /></Window>
+  <Window program={getProgram('recycle-bin')}><RecycleBin /></Window>
+</Desktop>

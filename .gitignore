@@ -1,0 +1,29 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# test artifacts
+test-results/
+playwright-report/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# local-only notes and instructions
+docs/
+CLAUDE.md
+
+# editor / OS files
+.idea/
+.DS_Store
+desktop.ini
+Thumbs.db

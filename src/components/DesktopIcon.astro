@@ -1,0 +1,16 @@
+---
+import type { Program } from '../data/programs';
+
+interface Props {
+  program: Program;
+}
+
+const { program } = Astro.props;
+---
+
+<li>
+  <a class="icon" href={`#win-${program.id}`} data-program={program.id}>
+    <svg aria-hidden="true"><use href={`#${program.icon}`}></use></svg>
+    <span class="label">{program.label}</span>
+  </a>
+</li>
